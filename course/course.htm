@@ -1,0 +1,1253 @@
+<HTML>
+<HEAD>
+<TITLE>The OOL-Course</TITLE>
+<BODY BGCOLOR="#FFFFFF">
+<BASEFONT SIZE=3>
+
+<H2>The Open Object Library (OOL) - Course of Instruction</H2>
+<H3><BLINK>UNDER CONSTRUCTION</BLINK></H3>
+<P>
+20. December 1997<BR>&copy Stefan von Brauk, Thomas Bonk
+<P>
+<H3 ALIGN=LEFT><B>Contents</B></H3>
+<OL>
+    <LI><A HREF="#Org">How this file is organized</A>
+    <LI><A HREF="#WhatsUp">What is the Open Object Library?</A>
+
+    <LI><A HREF="#FirstSteps">First Steps</A>
+    <OL>
+        <LI><A HREF="#CreateApp">Creating a basic application</A>
+        <LI><A HREF="#CreateFrame">Creating the first frame window</A>
+        <LI><A HREF="#Erors">Error handling</A>
+        <LI><A HREF="#CreateMore">More about frame windows</A>
+        <LI><A HREF="#CreateMenu">Windows with menus and toolbars</A>
+    </OL>
+    <LI><A HREF="#MoreWin">More about windows</A>
+    <OL>
+        <LI><A HREF="#Events">Event handling</A>
+        <OL>
+            <LI><A HREF="#EventsCommands">Events vs. commands</A>
+            <LI><A HREF="#EventConcept">The concept of handling events in the OOL</A>
+            <LI><A HREF="#SimpleEvents">Handling simple events</A>
+            <LI><A HREF="#ComplexEvents">Handling complex events</A>
+        </OL>
+        <LI><A HREF="#CreateFrameRes">Creating frame windows from resources</A>
+        <LI><A HREF="#Dialogs">Dialogs</A>
+        <OL>
+            <LI><A HREF="#DialogFrame">Dialogs vs. frame windows</A>
+            <LI><A HREF="#Modal">Modal Dialogs</A>
+            <LI><A HREF="#Modeless">Modeless Dialogs</A>
+        </OL>
+        <LI><A HREF="#Controls">More about control windows</A>
+        <OL>
+            <LI><A HREF="#NoteBooks">Notebooks</A>
+            <LI><A HREF="#Container">Container controls</A>
+        </OL>
+    </OL>
+    <LI><A HREF="#Files">Files and information about files</A>
+    <LI><A HREF="#Processes">Process classes and process-communication</A>
+    <OL>
+        <LI><A HREF="#Threads">Threads</A>
+        <LI><A HREF="#Semaph">Semaphores</A>
+        <LI><A HREF="#Pipes">Pipes</A>
+        <OL>
+            <LI><A HREF="#NvU">Named Pipes vs. Unnamed Pipes</A>
+            <LI><A HREF="#UPipe">Unnamed Pipes</A>
+            <LI><A HREF="#NPipe">Named Pipes</A>
+        </OL>
+        <LI><A HREF="#Sockets">Sockets</A>
+        <LI><A HREF="#DDE">DDE</A>
+    </OL>
+    <LI><A HREF="#Enhanced">Enhanced Topics</A>
+    <OL>
+        <LI>Java and the OOL
+        <LI><A HREF="#MultiMed">Multimedia</A>
+        <LI>EnDive
+        <LI><A HREF="#OtherLibs">Using the OOL and other class librarys</A>
+    </OL>
+</OL>
+<HR>
+
+<H2><A NAME="Org">How this file is organized</A></H2>
+This document is a short tutorial for programmers who want to use
+the Open Objects Library (OOL). You should read every section (even if a
+chapter didn't seem interesting for you), many concepts of the OOL are
+discussed, to know them may reduce trouble later.<P>
+The sourcecode shown in this this document is often avaible as a simple,
+but complete project, if so you find a hint in the text where to find the source.<P>
+Like described above this is a tutorial and shows only the basic usage of the OOL,
+in many cases the information provided here will not be enaugh for you.
+For further information see:
+<UL>
+<LI><A HREF="..\doc\ool.htm">The OOL - Documentation</A>
+<LI><A HREF="..\doc\main.html">The OOL - Online Class Documentation</A>
+<LI>The samples shiped with the OOL ( see OOL\Samples\...)
+</UL>
+<HR>
+
+<H2><A NAME="WhatsUp">What is the OOL?</A></H2>
+<P>The Open Objects Library (OOL) is a C++ library wich contains classes for the GUI, datatypes,
+multimedia, TCP/IP and more. To use OOL it is an advantage if you have some experiance in
+programing using class-librarys and/or OS/2-API functions.<P>
+Very nice tests of the OOL were presented in &quot;c&acute;t magazin&quot; 10/96 and &quot;Software Entwicklung&quot; 11/96.
+<P>Currently only the most modern operating system (OS/2 Warp 3 or higher) is supported.
+<HR>
+
+<H2><A NAME="FirstSteps">First Steps</A></H2>
+
+<H3><A NAME="CreateApp">Creating a basic application</A></H3>
+In some class librarys (and in earlier versions of the OOL) it is nessacary
+to create an instanance of an application class. This application class
+usualy represents the current process and some service functions.<P>
+In this version of the OOL an application object is created automaticaly when the function
+main() of your application is reached. This is an instance of XApplication wich can
+be accessed with the static function XApplication::GetApplication(). E.g. if you need
+a pointer to the application object you will code:
+<PRE>
+int main()
+{
+    //now we get a pointer to the
+    //application object
+    XApplication * currentApp = XApplication::GetApplication();
+}
+</PRE>
+You need this pointer allways to make the application work, it does not start itself
+because you must create a window or dialog (if you use windows or dialogs in
+your application) <B>before</B> the application starts to work.<BR>
+Having this things in mind a simple main-method looks like:
+<PRE>
+int main()
+{
+    //we get a pointer to the application object
+    XApplication * currentApp = XApplication::GetApplication();
+
+    //here a window is created
+    myWindow * w(...);
+
+    //now start the application
+    currentApp->Start();
+}
+</PRE>
+
+
+<H3><A NAME="CreateFrame">Creating the first frame window</A></H3>
+Usualy the first thing you want to do is to create a main window. The following source describes
+how to create an instance of the frame window class XFrameWindow:
+<PRE>
+    XFrameWindow * myWindow = new XFrameWindow( /* parameters */ );
+</PRE>
+This part of code produces a frame window, but is not very useful: To handle events etc.
+it is nessecary to overwrite some functions of the class XFrameWindow. Therfore
+you have to derive a class of XFrameWindow (the following code is avaible in
+the directory &quot;hello1&quot;):
+<PRE>
+class MyWindow: public XFrameWindow
+{
+    public:
+        void Draw();
+        BOOL DoCommand(LONG);
+        MyWindow();
+};
+</PRE>
+Here two methods are overwriten and a constructor for our new class is declared.<P>
+At first we have to create the construtor. In this case we create a simple window
+which has no menus or other controls except a little text, we give the window the window-id
+100, the title should be &quot;Hello World&quot; and the style of the window should be the default frame window style.
+<PRE>
+MyWindow :: MyWindow( ): XFrameWindow( 100 , &quot;Hello world!&quot;, XFrameWindow::defaultStyle)
+{
+    //at first we define a color which is used to paint the background
+    //we chose white as background color
+    XColor color(COL_WHITE);
+    SetBackgroundColor( &color );
+
+    //create a text
+    //the owner of the text is this window, show the text &quot;Hello World&quot;
+    XStaticText * text = new XStaticText( this,
+                                          &quot;Hello world!&quot;,
+                                          XRect( 100, 100, 150, 20));
+
+    //Set the position of this window
+    //left-lower corner is 100,100, width is 300, height is 200
+    XRect rect(100,100,300,200);
+    SetSize(&rect);
+
+    //make this window the active window
+    Activate();
+}
+</PRE>
+Now the overwritten methods must be implementated.
+The method Draw() is overwritten so we can draw the content of the window,
+the implementation of this methods is very simple:
+<PRE>
+void MyWindow :: Draw()
+{
+    //just fill the background, the text will draw itself
+    FillBackground();
+}
+</PRE>
+The method DoCommand() allows us to receive commands which are send from menus or toolbars, in
+this first sample we create this method, but dont use it, but we must return a value! We return
+FALSE to show the library that we have not handled the command.
+<PRE>
+BOOL MyWindow :: DoCommand(LONG com)
+{
+     //at this point we dont care about commands
+    return FALSE;
+}
+</PRE>
+At least we need a main-method in which our window is created and the application
+starts to work:
+<PRE>
+int main()
+{
+    //we get a pointer to the application object
+    XApplication * currentApp = XApplication::GetApplication();
+
+    //here a window is created
+    MyWindow * myWin = new MyWindow();
+
+    //no start the application
+    currentApp->Start();
+}
+</PRE>
+
+<H3><A NAME="Erors">Error handling</A></H3>
+Usualy errors apearing while your program is runing are shown by the
+return value of a member function, eg. a function returns FALSE
+if a method was not succesful or an errocode is returned, eg. if a file
+could be opened a method returns zero, if the file couldn't be opened
+the errorcode of the operating system is returned.<P>
+If a very serious error ocures, the OOL throws exceptions of the type
+XException (and derived classes), you can catch them in the usual manner:
+<PRE>
+try
+{
+    MyWindow * window = new MyWindow( /*parameters*/ );
+    // do something with the window
+}
+catch( XException& exception)
+{
+    // show the error
+    exception.ShowError();
+}
+</PRE>
+<H3><A NAME="CreateMore">More about frame windows</A></H3>
+If you have compiled the last example and tested it, you may have seen that
+the text &quot;Hello world&quot; is not moved if the size of the frame window changes.
+Perhaps you want to display the text centered, in this case we need to handle
+the sizing of the frame window. At first we have to overwrite the method
+XFrameWindow::DoSize() (the code is avaible in the directory &quot;hello2&quot;)
+<PRE>
+class MyWindow: public XFrameWindow
+{
+    public:
+        ......
+        void DoSize(XSize *);
+};
+</PRE>
+and create an implementation:
+<PRE>
+void MyWindow :: DoSize(XSize * size )
+{
+}
+</PRE>
+As you can see we have a little problem: we dont have a pointer
+to the text-object we created in the constructor of the frame window!<BR>
+There are two methods to solve this problem:
+<OL>
+<LI>Store the pointer<P>
+The simple way is to store the pointer to the object in the class MyWindow,
+simply declare a member like
+<PRE>
+class MyWindow: public XFrameWindow
+{
+    private:
+        XStaticText * text;
+    public:
+        //methods
+};
+</PRE>
+Once created you access the text object about this pointer.<BR>
+This method is simple and fast, but expensive: for ever window created on
+the frame window 4 bytes are used.<P>
+<LI>Use window-IDs<P>
+The second method is to give unique IDs for the child windows. Each window
+gets an ID in its constructor like
+<PRE>
+XStaticText * text = new XStaticText( this,
+                                      &quot;Hello world!&quot;,
+                                      XRect(),
+                                      TX_CENTER,
+                                      300);
+</PRE>
+(here the ID is 300). If the window is created you can access it with the member
+function GetWindow(), eg.
+<PRE>
+XWindow * text = GetWindow(300);
+</PRE>
+or, if you have to make a typecast
+<PRE>
+XStaticText * text = (XStaticText*) GetWindow(300);
+</PRE>
+This method is not so expensive like the first one but is a little bit slower
+(I prefer the second).<P>
+<B>Warning: if a window does not exist with the requested ID GetWindow() returns NULL!</B>
+</OL>
+Asuming we chose the second method, the constructor of the text object must be changed to:
+<PRE>
+XStaticText * text = new XStaticText( this,
+                                      &quot;Hello world!&quot;,
+                                      XRect( 100, 100, 150, 20),
+                                      TX_CENTER,
+                                      300);
+</PRE>
+The method DoSize() of the frame window looks like:
+<PRE>
+void MyWindow :: DoSize(XSize * size )
+{
+    XWindow * text = GetWindow(300);
+
+    if(text) //is the text object created?
+    {
+        //calculate the new size/position of the text object
+        XRect newSize;
+        newSize.SetX( size->GetWidth() / 2 - 75 );
+        newSize.SetY( size->GetHeight() / 2 - 10 );
+        newSize.SetWidth( 150 );
+        newSize.SetHeight( 20 );
+        text->SetSize( &newSize );
+    }
+}
+</PRE>
+You may have noticed above that windows are allways created with the operator
+new(). This is nessacary because <B>the destructor of a window-object is called
+automaticaly when the window is closed. The destructors of all child windows,
+menus and toolbars are called also</B>. If you would code in the main()-function
+<PRE>
+int main()
+{
+    //....
+    MyWindow( /* parameters */ );
+    //....
+}
+</PRE>
+the destructor of myWindow would be called two times: first time when the user close
+the window, second time when the main()-function will be left, an error ocures!<BR>
+The same effect is reached if you create child windows in the constructor of the frame window
+like:
+<PRE>
+class myWindow: public XFrameWindow
+{
+    XEntryField entryField;
+    public:
+    //methods
+};
+
+MyWindow::MyWindow(): XFrameWindow(/* parameters */), entryField(/* parameters */)
+{
+    //other code
+}
+</PRE>
+Here the destructor of <I>entryField</I> would be called two times too:
+<OL>
+<LI>The destructor of <I>entryField</I> is called automaticaly from the OOL when <I>MyWindow</I>
+is cloesed
+<LI>When <I>MyWindow</I> is destructed the destructor of <I>entryField</I> is called
+</OL>
+Another error related to this problem:
+<PRE>
+MyWindow::MyWindow(): XFrameWindow( /* parameters */)
+{
+    XEntryField entryField(/* parameters */);
+}
+</PRE>
+Here the destructor is called when the constructor of <I>MyWindow</I> is left!<P>
+To beware yourself from the described problems allways use new(). Like described above
+you may store the pointer to created child windows in your frame window class or
+you can use the method GetWindow() to access child windows.
+
+
+<H3><A NAME="CreateMenu">Windows with menus and toolbars</A></H3>
+You usualy want to give the user the chance to select some actions to be executed by
+your application. One method is to create a menubar for your frame window.
+At the first step you create a menu in the program resource file (*.rc, see
+Toolkit-documentation for details). In the source code you can load this menu with two
+methods (the following code is avaible in directory &quot;menu1&quot;):
+<OL>
+<LI>You give the frame window the same ID like the menubar and specify the style FRM_MENU
+which shows the OS that a menubar should be created.<BR>
+This way is very simple:
+<PRE>
+//we asume that the menubar has the ID 200
+MyWindow::MyWindow(): XFrameWindow( 200,
+                                    &quot;Hello world!&quot;,
+                                    FRM_MENU | XFrameWindow::defaultStyle )
+{
+}
+</PRE>
+<LI>You may want to load the menubar dynamicaly. This method has the advantage that
+you can chose at runtime which menu to load (e.g. if you have menubars for multiple
+languages). In this case you code:
+<PRE>
+//we asume that the menubar has the ID 200
+MyWindow::MyWindow(): XFrameWindow( 0, //ID is not nessacary
+                                    &quot;Hello world!&quot;,
+                                    XFrameWindow::defaultStyle )
+{
+    XMenuBar * menu = new XMenuBar(this, 200);
+}
+</PRE>
+</OL>
+(remember that the destructors of the menubar are called automaticaly).<BR>
+Independent of which way you created the menubar you need a method where
+you can handle the commands send from the menubar when the user selected
+an item of the menu. Like described above you have to overwrite the method
+DoCommand():
+<PRE>
+class MyWindow: public XFrameWindow
+{
+    public:
+    //methods
+    BOOL DoCommand(LONG command);
+};
+</PRE>
+The method DoCommand() allows you to handle the commands, the parameter <I>command</I>
+has the ID of the selected menu item.<BR>
+Usualy you use symbolic names for the menu IDs, like
+<PRE>
+#define IDM_MAIN      200  //the ID of the main menu
+#define IDM_FILE      210  //ID of the submenu &quot;file&quot;
+#define IDM_FILE_OPEN 211  //ID of the menu item &quot;file-open&quot;
+//and so on
+</PRE>
+Done so the commands can now be handled. Usualy you create a &quot;switch()&quot;-block
+to determine which command was send:
+<PRE>
+BOOL MyWindow :: DoCommand(LONG command)
+{
+    switch( command )
+    {
+        case IDM_FILE_OPEN:
+            //handle the command to open a file
+            break;
+        case IDM_FILE_CLOSE:
+            //handle the command to close a file
+            break;
+        default:
+            return FALSE;   //show the library that we did not handle the command
+    }
+    return TRUE; //show the library that we have handled the command
+}
+</PRE>
+
+Another way to allow the user to make some choices is to create a toolbar.
+<PRE>
+    XToolBar * toolBar = new XToolBar( this );
+</PRE>
+Now you can add control-windows like buttons, combo-boxes etc. to this toolbar.
+If you add push-buttons to the toolbar every time this button is pressed
+a command with the ID of that button is send to the method DoCommand() of the
+frame window the toolbar belongs to. From this reason you must make shure to give the
+buttons unique IDs (it is a good idea to give a button the ID of the corresponding
+menu item).<P>
+Adding controls to toolbars is done with two steps: the first is to create the
+control with the the toolbar as parent, the second step is to add the control with the
+toolbars method AddWindow():
+<PRE>
+MyWindow::MyWindow():XFrameWindow(/* parameters */)
+{
+    XToolBar * toolBar = new XToolBar( this );
+    XPushButton * button = new XPushButton( toolbar,
+                                         XRect( 0,0,40,20),
+                                         IDM_FILE_OPEN,
+                                         WIN_VISIBLE,
+                                         &quot;Test&quot;);
+    toolbar->AddWindow( button );
+}
+</PRE>
+<HR>
+<H2><A NAME="MoreWin">More about windows</A></H2>
+With the last section you are able to create a basic window, but the functionality
+of that window may be not enaugh comlex for your purposuals.<BR>
+The next sections describe how to programm windows in a more difficult way.
+
+
+<H3><A NAME="Events">Event Handling</A></H3>
+Often you need more information of the users action than simple commands send by
+menus, e.g. you need to know if the user selected an item of a listbox or something else.
+This informations are provided by events. The following sections describe the differnce
+between commands and events and how to use events.
+
+<H4><A NAME="EventsCommands">Events vs. Commands</A></H4>
+At first we have to know the differnce between events and commands:
+<OL>
+<LI>Commands are send from menubars, popup-menus and push-buttons when the user
+selected a menu item or pressed a push-button. The only avaible information is
+the ID of menu item/push-button which was selected, this ID is send to the DoCommand()-method
+of the window the menu/button belongs too (in the case of toolbars the commands are send
+from the toolbar to the owner window).
+<LI>Events are more complex: if the user edit the the text of an entry-field or select
+an item of a listbox an event is send from the library which
+can be handled by the application.
+</OL>
+
+
+<H4><A NAME="EventConcept">The concept of handling events in the OOL</A></H4>
+Like described above events are more complex than commands. The OOL has two types of events:
+simple events and complex events:
+<OL>
+<LI>A simple event occures if the user edits a text or selects an item of a listbox.
+This events are encapsulated in the class XControlEvent, if an event ocures an instance
+of XControlEvent is send to the method DoControl() of the owner window of the control
+window that send the event. To catch this
+events you need to overwrite this method.
+<LI>There are some more complex events you might to handle like keyboard-input, mouse-events
+or drawing events. For this events special event-classes are designed like XMouseEvent, XItemDrawEvent etc.,
+to catch these events there are special handler classes needed: eg. if you want to handle a
+XMouseEvent you need a XMouseHandler, for XKeyboardEvents a XKeyboardHandler is needed ...
+</OL>
+
+
+
+<H4><A NAME="SimpleEvents">Handling simple events</A></H4>
+A simple event ocures when a control-window like a listbox is scrolled, an item is selected
+etc. To catch this events you need to overwrite the method DoControl() of the owner window.
+<PRE>
+void MyWindow::DoControl( XControlEvent * event)
+{
+}
+</PRE>
+As you see a pointer to a XControlEvent-object is send to this method,
+from the event-object infomation about the event is avaible:
+<UL>
+<LI>Which window send the event?<P> With the member method XControlEvent::GetWindowID()
+you access the window-ID of the window which send the event, with XControlEvent::GetWindow()
+you access a pointer to that window.<P>
+<LI>What type of event?<P>
+With XControlEvent::GetEventID() you receive the ID of the event. In XControlEvent this IDs
+are possible:
+ <TABLE 2 BORDER=1>
+ <TR><TD>WIN_CHANGED </TD><TD>the content of the client has changed
+  </TD></TR>
+ <TR><TD>WIN_DBLCLICK </TD><TD>the user double-clicked on the window
+  </TD></TR>
+ <TR><TD>WIN_PAINT </TD><TD>the window will be redrawn
+  </TD></TR>
+ <TR><TD>WIN_ENTER </TD><TD>the user pressed ENTER
+  </TD></TR>
+ <TR><TD>WIN_SELECTED </TD><TD>an item of the window was selected
+  </TD></TR>
+ <TR><TD>WIN_VSCROLL </TD><TD>the window scrolls it contents
+  </TD></TR>
+ <TR><TD>WIN_HSCROLL </TD><TD>the window scrolls it contents
+  </TD></TR>
+ <TR><TD>WIN_SETFOCUS </TD><TD>the window recieves the focus
+  </TD></TR>
+ <TR><TD>WIN_KILLFOCUS </TD><TD>the window lost the focus
+  </TD></TR>
+ <TR><TD>WIN_SHOWLIST </TD><TD>the list of a <A HREF="..\doc\XComboBox.html" target=_parent>XComboBox</A> will be displayed
+  </TD></TR>
+ <TR><TD>WIN_TRACK </TD><TD>the user tracks the window (in XSlider)
+  </TD></TR>
+ <TR><TD>WIN_ENDTRACK </TD><TD>the user stopped tracking (in XSlider)
+  </TD></TR>
+ <TR><TD>WIN_UPARROW </TD><TD>the user pressed the arrow &quot;up&quot; (in XSpinButton)
+  </TD></TR>
+ <TR><TD>WIN_DOWNARROW </TD><TD>the user pressed the arrow &quot;down&quot; (in XSpinButton)
+  </TD></TR>
+ <TR><TD>MEDIA_PLAYED </TD><TD>a media-window has completed playing a file
+  </TD></TR>
+ <TR><TD>MEDIA_PAUSED </TD><TD>a media-window paused playing a file
+  </TD></TR>
+ <TR><TD>MEDIA_STOPED </TD><TD>a media-window stoped playing a file
+  </TD></TR>
+ <TR><TD>MEDIA_REWINDED </TD><TD>a media-window completed rewinding a file
+ </TD></TR></TABLE>
+The types of events you can catch are depending of the used controls, eg. a simple entryfield
+cannot send an event with the ID WIN_VSCROLL, events with the prefix MEDIA_ can only send
+by multimedia-windows (see below).
+</UL>
+If we have created a frame window with some child windows like (the following source is
+avaible in directory &quot;event1&quot;):
+<PRE>
+MyWindow :: MyWindow( ): XFrameWindow( /*parameters*/ )
+{
+    //create a combobox
+    XComboBox * combo = new XComboBox( this, XRect( 20, 100, 200, 90), IDC_LISTNAME, CB_DROPDOWNLIST | WIN_VISIBLE);
+
+    //create a simple entry field
+    XEntryField * entry = new XEntryField( this, XRect( 20, 60, 100, 20), IDE_ENTRYNAME, ES_MARGIN | EN_LEFT | WIN_VISIBLE);
+}
+</PRE>
+we can code the event handling for these child windows:
+<PRE>
+void MyWindow::DoControl( XControlEvent * event)
+{
+    switch( event->GetEventID())                        // what type of event?
+    {
+        case WIN_CHANGED:                               // the content of the window changed
+            if( event->GetWindowID() == IDE_ENTRYNAME)  // in this case we are only interested
+            {                                           // for the window with the ID IDE_ENTRYNAME
+                XString buffer;
+                event->GetWindow()->GetText( &buffer ); // here we read the new text of the window
+                                                        // do something with the text
+            }
+            break;
+        case WIN_SELECTED:                              // an item was selected
+            if( event->GetWindowID() == IDC_LISTNAME)   // in this case we are only inerested
+            {                                           // for a combobox with the ID IDL_LISTNAME
+                XString buffer;                         // WARNING: the following typecast ist only
+                                                        // allowed if you are shure, that the window
+                                                        // IS a combobox
+                ((XComboBox*) event->GetWindow())->GetText( &buffer );
+            }
+            break;
+    }
+}
+</PRE>
+
+
+<H4><A NAME="ComplexEvents">Handling complex events</A></H4>
+To handle complex events unfortunatly more code is needed. Like described above
+for each type of complex event a pair of event class and event handler class
+is need like: XMouseEvent - XMouseHandler.<P>
+The handler-classes work is to catch events of the needed type: XMouseHandler can
+only catch events of the type XMouseEvent. Currently in the OOL following handler-classes
+(and related event classes) are avaible:
+<UL>
+<LI>XBackgroundDrawHandler
+<LI>XContainerHandler
+<LI>XDragHandler
+<LI>XKeyboardHandler
+<LI>XItemDrawHandler
+<LI>XMouseHandler
+<LI>XNoteBookHandler
+<LI>XStyleHandler
+<LI>XTimer
+</UL>
+To catch and handle events you have to overwrite the method HandleEvent()
+of a event handler class. Eg. if you want to handle mouse events for a window you
+code (source is avaible in directory &quot;event2&quot;):
+<PRE>
+class MyMouseHandler: public XMouseHandler
+{
+    public:
+        MyMouseHandler( XWindow * w): XMouseHandler(w) {;}
+        BOOL HandleEvent(XMouseEvent * ); // in this method our work will be done
+};
+</PRE>
+The method HandleEvent() differs between the differen handler classes by the type of
+event class given in the first parameter. Also the avaible information between
+the different event class changes (see documentation of the event classes). In this sample
+we receive about the method GetEventID() which mouse aktion is to handle:
+<PRE>
+BOOL MyMouseHandler :: HandleEvent(XMouseEvent * event)
+{
+    switch( event->GetEventID())        // which event?
+    {
+        case MOU_BTN1DOWN:              // left mouse button pressed
+            XProcess::Beep( 200, 200);  // use the horn
+            break;
+        case MOU_BTN2DOWN:              // right mouse button pressed
+            XProcess::Beep( 400, 200);
+            break;
+    }
+    return TRUE; //show the library that we handled the event
+}
+</PRE>
+At least we must attach the handler <B>to the window for which events should be handled</B>:
+<PRE>
+MyWindow::MyWindow(): XFrameWindow( /*parameters*/ )
+{
+    //init-code
+    MyMouseHandler * handler = new MyMouseHandler(this);
+}
+</PRE>
+<B>Like child-windows, menus etc. the destructors of handlers are called automaticaly!</B><P>
+For all handler classes the way of coding is the same: Derive a class of the needed
+handler class, overwrite the constructor and the method HandleEvent(), code
+your event-handling in the method and attach the handler to the needed window. The difference
+between the events is the functionality of the event-classes and the event-IDs returned by these
+classes.
+
+
+<H3><A NAME="CreateFrameRes">Creating frame windows from resources</A></H3>
+One method to create frame windows is to create the frame window and its child windows
+at runtime like shown in the samples above: first you create a frame window, then
+the child windows are created dynamicaly<P>
+Another way is to build a resource file with a dialog editor and then create the window
+from this resource file. In the resource file the desciption of the window looks like
+<PRE>
+DLGTEMPLATE ID_MYINDOW LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+    DIALOG  &quot;&quot;, ID_MYWINDOW, 31, 32, 153, 106, NOT FS_DLGBORDER | WS_VISIBLE
+    BEGIN
+        ENTRYFIELD      &quot;, 106, 45, 86, 99, 8, ES_MARGIN
+        LTEXT           &quot;Name:&quot;, 105, 13, 86, 25, 8
+        //other child windows
+    END
+END
+</PRE>
+This resourcefile will be compiled with the resource compiler and linked to the EXE-file
+from which the window dscription can be loaded.<P>
+If you want to create a frame window this way the code looks like
+<PRE>
+MyWindow::MyWindow():XFrameWindow( ID_MYWINDOW,
+                                   &quot;Hello world&quot;,
+                                   XFrameWindow::defaultStyle,
+                                   XRect(),
+                                   NULL,
+                                   TRUE)
+{
+}
+</PRE>
+The last parameter send to the constructor of XFrameWindow shows the library
+to create the window from the resources (make shure that the used ID in the
+constructor is the same as used for the resource).<P>
+Another way to build frame windows from resources is that the resources are not
+linked to the EXE-file but are linked to a DLL (see your compiler documentation for details).
+In this case we need to use the class XResource. This class is used to identify
+a resource:
+<OL>
+<LI>the ID of the resource
+<LI>the &quot;container&quot; of the resource: in which DLL or executable the resource resides
+</OL>
+Eg. if your application should support two languages you create two resource-DLLs,
+one for the first language, one for the second one. At runtime you decide which DLL
+to use:
+<PRE>
+    XResourceLibrary * resourceLib;
+
+    if(language == ENGLISH)
+        resoucelib = new XResourceLibrary( &quot;english.dll&quot; );
+    else
+        resoucelib = new XResourceLibrary( &quot;german.dll&quot; );
+    XResource resource( ID_MYWINDOW, resourceLib);
+</PRE>
+A resource constructed this way you can pass to the constructor
+of XFrameWindow. If you have enabled the build-from-resource
+the frame window is loaded from the DLL you have specified (make shure that
+the ID of the resource is the same in the DLLs):
+<PRE>
+MyWindow::MyWindow( XResource * resource):XFrameWindow( resource, // <=
+                                                        &quot;Hello world!&quot;,
+                                                        XFrameWindow::defaultStyle,
+                                                        XRect(),
+                                                        NULL,
+                                                        TRUE)
+</PRE>
+Another method is to change the resource-library used by XApplication.
+The class XApplication creates a XResourceLibrary which holds the resources
+linked to the EXE-file. All resources which are identified only by theire ID
+and not with a XResourceLibrary are loaded from the XResourceLibrary of the
+XApplication class. If we want to load all resources now from a DLL we can replace
+the XResourceLibrary used by XApplication with our resource-DLL
+<PRE>
+void main ( void)
+{
+    XResourceLibrary * resourceLib;
+
+    if(language == ENGLISH)
+        resoucelib = new XResourceLibrary( &quot;english.dll&quot; );
+    else
+        resoucelib = new XResourceLibrary( &quot;german.dll&quot; );
+
+    //we set the resource-library a the actual library for the application, all resorces
+    //will be loaded from this library
+    XApplication::GetApplication()->SetResourceLibrary( resourceLib );
+
+    //other code follows here
+    ....
+}
+</PRE>
+<B>Warning:</B> if you code this way all resources you use must be avaible in the loaded
+DLL. Usualy bitmaps and icons are not language-dependent and should be linked only to the
+EXE-file. In this case you shouldnt replace the XResourceLibrary from XApplication and work with
+XResource instead.<P>
+<B>More warnings:</B> If you load a frame window from a resource-DLL and specify the style FRM_MENU you must make shure
+that the menu-resource is avaible in the loaded DLL. The settings you make in the dialog editor
+for the frame window are not used, the style of the frame is defined by the construtor settings.
+For frame windows defined by resources you have to <B>disable</B> in the dialog editor:
+<OL>
+<LI>system menu
+<LI>title bar
+</OL>
+<B>It is a very good idea to use dialogs instead frame-windows if you want to load
+your window from resources</B> (see next section).
+
+<H3><A NAME="Dialogs">Dialogs</A></H3>
+
+<H4><A NAME="DialogFrame">Dialogs vs. frame windows</A></H4>
+As you have seen above frame windows are very flexibe to use but sometimes
+a little bit complicated to code. The advantage of dialogs is that they are
+simple to use and work (sometimes) a little bit faster.<P>
+Usualy a dialog is designed in a dialog editor, the dialog is then created from the
+resource file produced by the dialog editor. In the OOL you have the choice between
+modal and modless dialogs (the following code is avaible in the directory &quot;dialogs&quot;).
+
+<H4><A NAME="Modal">Modal Dialogs</A></H4>
+Modal dialogs are working application-modal: if a modal dialog is open
+no other control except these from the modal dialog can be used.<P>
+To create a modal dialog the dialog must be defined in the resources,
+then it can be created:
+<PRE>
+    // &quot;this&quot; is a pointer to a parent window
+    XModalDialog * dlg = new XModalDialog( IDM_MODALDIALOG, this);
+</PRE>
+(you can also create a dialog from a resource-DLL like decribed for frame windows).
+At this point the modal dialog exists but does not work, we have to call the
+Start()-method of the dialog:
+<PRE>
+    LONG result = dlg->Start();
+</PRE>
+<B>The great advantage of modal dialogs is that the code which follows after the call
+of Start() is not executed until the method Start() returns!</B> (If you would create
+here a frame window the code would be executed when the constructor of the frame window is left).<P>
+When the method Start() is finished it returns the ID of the control window that finished the modal dialog,
+usualy it will be a pushbutton like &quot;OK&quot; or &quot;Cancel&quot;, so you can decide how to continue.
+<BR><B>Warning: when the method Start() returns the dialog-object is destroyed! You cannot access
+windows of the dialog neither its data.</B> From this reason you should derive your own class
+from XModalDialog and handle in the method DoCommand() the commands.
+
+<H4><A NAME="Modeless">Modeless Dialogs</A></H4>
+Unlike modal dialogs modeless dialogs are not modal %-), that means other windows
+can be used while the modeless dialog is open.<BR>
+To create a dialog (it must be defined in the resources) you simply cal the
+constructor:
+<PRE>
+    XModelessDialog * dlg = new XModelessDialog( IDM_MODALDIALOG );
+</PRE>
+Usualy you have to derive your own class from XModelessDialog and overwrite
+the methods DoCommand(), DoControl() etc.
+
+
+<H3><A NAME="Controls">More about control windows</A></H3>
+In the samples above you have seen that usualy it is very simple
+to use a control window like an entry field or a listbox:
+<OL>
+<LI>create the control window with the new() operator or load a complete frame window/dialog from
+the resources
+<LI>init the control window, eg. set the text or fill the listbox
+<LI>if nessacary use the DoControl()-method of the owner window to react to events send
+from the control window
+</OL>
+As seen at the complex events you may also add a event handler class to a control
+window if more complex event should be handled, eg. if you want to draw the content
+of a listbox yourself.<P>
+OS/2 provides two types of control windows that are more difficult to handle: notebooks and
+container-controls.
+
+
+<H4><A NAME="NoteBooks">Notebooks</A></H4>
+Notebooks are espacially used for settings of programms etc. A notebook contains
+one ore more pages, at first you have to create the notebook itself, then
+add the pages.
+<OL>
+<LI>The notebook can be created like any other conntrol, you can use new() or define
+the notbook in the resources for a frame window or dialog (code is avaible int directory &quot;notebook&quot;):
+<PRE>
+XNoteBook * noteBook = new XNoteBook( this,                  // &quot;this&quot; is a pointer to the owner window
+                                      XRect( 10,10,200,300), // position and size
+                                      ID_NOTEBOOK,           // ID
+                                      NB_TABBEDDIALOG|WIN_VISIBLE|NB_SOLIDBIND|NB_BACKPAGESBR|NB_SQUARETABS|NB_TABTEXTCENTER|NB_STATUSTEXTLEFT,
+                                      &quot;8.Helv&quot;);             // font to use
+</PRE>
+<LI>The second step is to fill the notbook with pages (<B>you must not use a notebook without pages!</B>). Pages are like dialogs defined in the
+resources of the application or can be created dynamicaly at runtime:
+<PRE>
+XNoteBookPage * page = new XNoteBookPage( noteBook,  // the owner of the page is the notebook-control
+                                          ID_PAGE);  // the ID of the resource
+</PRE>
+Like described above notebook pages can be loaded from resource-DLLs like frame windows
+(see constructor for XNoteBookPage for details).<BR>
+Notebook pages have the same functionality like dialogs/frame windows, if you need
+to catch events from controls belonging to the page you have to derive your own
+class from XNoteBookPage and overwrite the nessacary methods like DoControl() etc.<P>
+If you want to add windows to a notebook page dynamicaly ( using new() ) you have to
+set the page to the top first:
+<PRE>
+page->SetTop();
+XPushButton * button = new XPushButton( page,   //the page is the owner
+                                        XRect( 60, 20, 70, 25),
+                                        ID_OK,
+                                        WIN_VISIBLE,
+                                        &quot;OK&quot; );
+</PRE>
+As described above the simple events should be caught with the DoControl()
+method of the pages, complex events send from the notbokk (e.g. if the user selects
+a page) are send in the form of a XNoteBookEvent, to catch them you have to install a
+handler class (see above) of the type XNoteBookHandler.
+</OL>
+
+<H4><A NAME="Container">Container controls</A></H4>
+Container can be created like any other control using new() or resources, but
+it is more difficult to init them and fill them with data.<P>
+
+<H5><U>Creating the container</U></H5>
+the first step is to create the container, you may define it in the resources for
+a window/dialog or create it dynamicaly (the following code is avaible in directory
+"contain", see &quot;samples\sample4&quot; for more detailed instructions programming container controls):
+<PRE>
+container = new XContainerControl( this, XRect(100,100,30,200), ID_CONTAINER, WIN_BORDER|WIN_VISIBLE);
+</PRE>
+
+<H5><U>Init</U></H5>
+The container control provides different views like icon, text or tree view,
+other settings like size of icons/bitmaps etc can made too.<BR>To make this settings
+the class XContainerInfo is used to query/set this information. Any of this information
+can be changed at runtime. To change settings of a container control you would code
+<PRE>
+XContainerInfo info( &quot;Departments&quot;, CO_TREE | CO_TITLE | CO_TREELINE );
+
+//we use only a very small icon
+XSize size(16, 16);
+info.SetBitmapSize( &size );
+info.SetTreeBitmapSize( &size );
+
+//enable the changes
+container->SetInfo( &info);
+</PRE>
+As you see the container control is initialized with the XContainerInfo. If you would
+do so to change the container settings at runtime all settings would be overriden. To prevent
+this behaviour
+<OL>
+<LI>query the current settings of the container
+<LI>change the settings you need
+</OL>
+eg
+<PRE>
+XContainerInfo info;
+
+//get the current setings
+container->GetInfo( &info);
+
+//we use only a very small icon
+XSize size(16, 16);
+info.SetBitmapSize( &size );
+info.SetTreeBitmapSize( &size );
+
+//enable the changes
+container->SetInfo( &info);
+</PRE>
+
+<H5><U>Inserting columns (detailed view only)</U></H5>
+If your container control is in <B>detailed view</B> you have to insert columns,
+the class XContainerColumn is used for this.
+<PRE>
+XContainerColumn * col1 = new XContainerColumn( container,   //the owner
+                                                &quot;Column 1&quot;,  //title of the column
+                                                0,           //first column
+                                                COL_HORZSEPARATOR | COL_STRING | COL_SEPARATOR, COL_LEFT | COL_FITITLEREADONLY | COL_HORZSEPARATOR | COL_TOP ); //settings
+//insert the column
+container->InsertColumn( col1 );
+
+XContainerColumn * col2 = new XContainerColumn( container,   //owner
+                                                &quot;Column 2&quot;,  //title
+                                                1,           //second column
+                                                COL_SEPARATOR | COL_HORZSEPARATOR | COL_STRING, COL_LEFT | COL_FITITLEREADONLY | COL_HORZSEPARATOR | COL_TOP );
+//insert the second column behind the first one
+container->InsertColumn( col2, col1 );
+
+//redraw the container
+container->UpdateColumns();
+</PRE>
+
+
+<H5><U>Adding objects</U></H5>
+Objects of a container are represented by the class XContainerObject. To add objects
+to a container control. The most simple method (eg. for icon- or text-view) is:
+<PRE>
+//create an object
+XContainerObject * obj = new XContainerObject(container);
+
+//give the object a title
+obj->SetTitle( &quot;Object 1&quot; );
+
+//you may want to see it with an icon
+obj->SetIcon( &icon );
+
+//add the object to the container
+container->AddObject( obj );
+
+//continue like above for all objects to insert
+....
+
+//finaly let the container show the objects
+container->InvalidateObject();
+</PRE>
+For container controls in <B>tree view</B> the shown method must be changed
+only at the Line AddObject(), here you often have to specify a parent object for the
+object to add:
+<PRE>
+//first create the parent object, eg. the root of the tree
+XContainerObject * root = new XContainerObject(container);
+
+//create the next object
+XContainerObject * child = new XContainerObject(container);
+
+//add the second object as a child for the root
+container->AddObject( child, root );
+
+//continue like above
+</PRE>
+Container controls with <B>detail view</B> are more compilcated.
+At first you have to specify in the constructor how many columns are used so
+the library can allocate the needed memory:
+<PRE>
+//we use four columns in this sample
+XContainerObject * obj = new XContainerObject(container, 4);
+</PRE>
+Done so we have to set the data for each columnn:
+<PRE>
+obj->SetColumnData( 0, &quot;Column 1&quot;); //data for the first column
+obj->SetColumnData( 1, &quot;Column 2&quot;); //data for the first column
+//and so on
+</PRE>
+There are different overloads of SetColumnData() to set icons, text, dates
+etc as the column data.
+<H5><U>Handling container events</U></H5>
+Comlex container events are caught with a XContainerHandler, handle them as described above.
+In the case of drag/drop or direct editing (the user edits the text of a container object)
+special event classes are used (XContainerDragEvent/XContainerEditEvent), in the method
+HandleEvent() of your class of XContainerHandler you can typecast (see online documentation).
+
+<H5><U>Retrieving container objects</U></H5>
+To retrieve objects added to a container you can use the methods GetObject() and FindObject()
+from XContainerControl, the methods returns a pointer to XContainerObject (you can typecast
+if you know the class for shure).
+<HR>
+
+
+
+
+<H2><A NAME="Files">Files and information about files</A></H2>
+The most important method to save and restore data is to use files. This chapter describes
+how to use files with the OOL.<BR>
+
+<H5><U>Open a file</U></H5>
+To have read and/or write access to a file you have to open it with the method
+XFile::Open(). With the different parameters of Open() you can specify the
+access-mode and how the file is shared with other processes. To open a file
+for read-write mode and lock the file for other processes you would code:
+<PRE>
+XFile file;
+ULONG returnCode;
+
+returnCode = file.Open( &quot;c:\\config.sys&quot;,                      // the path of the file to open
+                        XFILE_FAIL_IF_NEW|XFILE_OPEN_EXISTING, // if the file does not exist, return
+                        XFILE_READWRITE,                       // read/write-access
+                        XFILE_SHARE_DENYREADWRITE );           // lock the file
+
+if( returnCode == 0) // ok, the file is open
+{
+      // perform your read/write actions here
+}
+else  // error ocured, see OS/2 online documentation
+{     // for the meaning of returnCode
+
+}
+
+file.Close();
+</PRE>
+<H5><U>Read/Write from/to a file</U></H5>
+To read/write data from/to a file the member functions Write() and Read()
+are avaible. This methods have multiple overloads for the different data classes
+like XString, XDate, XTime and for some &quot;C&quot;-data types like LONG, CHAR etc.<BR>
+Assuming we have opened a file for read/write mode we can code
+<PRE>
+XDate date;
+date.GetCurrentDate();
+
+file.Write( date );
+
+// to read a date:
+file.Read( &date );
+</PRE>
+To read/write a XString it is a little more complicated becaus on default
+the terminating NULL of the string is not saved. A good way is to write/read
+strings in the &quot;Pascal&quot;-way if you use your own file format, that means
+you store the length of the string first, then the content of the string without
+terminating NULL:
+<PRE>
+XString string;
+
+// here the length ist stored as a char so the string must
+// not be longer than 255 chars
+file.Write( (CHAR) string.GetLength());
+file.Write( string );
+
+// and now read that string:
+CHAR size;
+
+file.Read( &size );
+file.Read( string, size );
+</PRE>
+If you need to save the terminating NULL you would code:
+<PRE>
+XString string;
+
+file.Write( string, string.GetLength() + 1);
+</PRE>
+
+<H5><U>Information about files</U></H5>
+To get more information about a file or directory the class XFileInfo is used, you can
+use it
+<UL>
+<LI>with the class XFileFind like described below
+<LI>wih the static member function XFile::GetPathInfo()
+<LI>if you have opend a file with the method XFile::GetFileInfo()
+</UL>
+With the method XFile::GetPathInfo() you simply code:
+<PRE>
+XFileInfo fileInfo;
+
+XFile::GetPathInfo( &quot;c:\\config.sys&quot; );
+</PRE>
+To use XFile::GetFileInfo() you have to open the file first:
+<PRE>
+XFileInfo fileInfo;
+XFile     file;
+
+file.Open( &quot;c:\\config.sys&quot; );
+file.GetFileInfo( &fileInfo );
+</PRE>
+
+
+<H5><U>Finding files</U></H5>
+Often you need to find one or more files, eg. find all files with the suffix &quot;.cpp&quot;.
+To find these files the class XFileFind is used:
+<PRE>
+XFileFind fileFinder( &quot;*.cpp&quot; );
+
+// we need two buffers to hold the informations
+XString    fileName;
+XFileInfo  fileInfo;
+
+// find all files
+while( fileFinder.Find( &fileName, &fileInfo))
+{
+   // perform here your actions with the found files
+   // in the buffer &quot;fileName&quot; the name of the found file is avaible
+   // in the buffer &quot;fileInfo&quot; further information about the found
+   // file is avaible (like size, attributes etc)
+};
+</PRE>
+
+
+<HR>
+
+
+<H2><A NAME="Processes">Process classes and process-communication</A></H2>
+As described above XApplication is your main process class. It is created automaticaly
+when your program starts and is terminated and destroyed when your program ends. The class
+contains some service methods and the functions derived from XProcess.<P>
+The following secton describes the other process related classes of the OOL: in the first
+part the usage of the thread class XThread will be discused, then signal classes
+for processes (semaphores) are following. Finaly the usage of classes for data
+exchange between processes is shown.
+
+<H3><A NAME="Threads">Threads</A></H3>
+One advantage of modern operating sytems is theire multitasking concept. To use
+this concept in an application you have to use threads (for a detailed discussion of threads
+see OS/2 developer online documentation).<P>
+The OOL contains two tread-classes:
+<OL>
+<LI>XPMThread
+<LI>XThread
+</OL>
+The threads differ in theire usage, XThread is designed for a work which does not
+need access for windows or other graphical elements, a typical work for this
+class is handling pipes, files, sockets etc. XPMThread has full access to the window
+classes and can handle windows, receive messages etc.<P>
+A very popular ... is to print within a thread: while the document is printed
+the user can work with the printing application and don't need to wait for the
+printer. The following example shows how this job can be done:
+<PRE>
+class PrintThread: public XPMThread
+{
+   public:
+      PrintThread( ) { }
+      void Init()
+      {
+         XPrinterDevice printer;
+         //initiate the printer here
+         ....
+
+         //create here objects to print
+         .....
+         printer.Draw();
+         printer->ClosePrinterJob( );
+
+         XMessageBox("document printed");
+
+         //ugly, but nessacary:
+         delete this;
+      }
+};
+
+BOOL MyWindow::DoCommand( LONG command)
+{
+   if(command == ID_PRINT)
+   {
+      PrintThread * pThread = new pThread();
+      p->Run();
+   }
+   return TRUE;
+}
+</PRE>
+As you see above the printing is done in the Init() - method of the thread class.
+This is the method (unlike the constructor of the thread class) where you have full
+control of the thread and where the class is executed as a single thread. The Init() -
+method is called automaticaly from the library, you must not call it yourself.<P>
+The second section of the sample shows how to create and start a thread-class.
+There are two critical points:
+<OL>
+<LI>The thread-instance must be created with the new() operator. If you would create
+    the instance like <PRE>PrintThread pThread;</PRE> the destructor of the class would
+    be called when the calling method is left.
+<LI>The thread must be started with the member method Run(), if you don't call it
+    the thread is never started.
+</OL>
+
+<H3><A NAME="Semaph">Semaphores</A></H3>
+<H3><A NAME="Pipes">Pipes</A></H3>
+<H4><A NAME="NvU">Named Pipes vs. Unnamed Pipes</A></H4>
+<H4><A NAME="UPipe">Unnamed Pipes</A></H4>
+<H4><A NAME="NPipe">Named Pipes</A></H4>
+
+<H3><A NAME="Sockets">Sockets</A></H3>
+<H3><A NAME="DDE">DDE</A></H3>
+<HR>
+
+<H2><A NAME="Enhanced">Enhanced topics</A></H2>
+
+<H3><A NAME="MultiMed">Multimedia</A></H3>
+The OOL contains two classes for basic multimedia support:
+<UL>
+<LI>XSound is a class to play WAV and MIDI files
+<LI>XVideo can play digital videos (depending of which CODECs are installed)
+<LI>XCDPlayer
+</UL>
+For all classes MMPM/2 must be installed (on Warp 4 it is always installed).<P>
+To use the multimedia classes (see directory &quot;sound&quot; for sourcecode):
+<OL>
+<LI>create an instance of the needed class
+<LI>load a file
+<LI>use the methods Play(), Stop() etc
+</OL>
+The methods to play a file are usualy derived from the class XMediaWindow, this methods
+send a notification code to the owning frame window when the action has finished, this
+notification codes can be caught in the method DoControl() of the frame window.
+E.g. if you have started to play a video in the DoCommand() method you recive an object
+of the type XControlEvent which has the ID MEDIA_PLAYED.<P>
+<B>You must make shure that a created multimedia-object is destroyed before your application
+is finished!</B>
+
+<H3><A NAME="OtherLibs">Using the OOL and other class librarys</A></H3>
+Objects of the OOL are tested with the <I>Standard Template Library (STL)</I>. To use
+the data-objects XString, XDate and XTime with the STL the operators
+&quot;<&quot; and &quot;==&quot; and the copy-constructors are overwriten in these classes, you shouldnt have any problems to use
+this classes with sorted containers like <I>set</I> or <I>bag</I> (<B>never, never
+put a window-object in a container!</B>)
+</HTML>

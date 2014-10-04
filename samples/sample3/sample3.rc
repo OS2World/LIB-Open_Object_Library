@@ -1,0 +1,13 @@
+
+#include "resource.h"
+
+ICON IDM_MAIN sample3.ico
+
+BITMAP IDM_PLAY play.bmp
+BITMAP IDM_HALT halt.bmp
+BITMAP IDM_BACK back.bmp
+BITMAP IDM_PLUS plus.bmp
+BITMAP IDM_MIN min.bmp
+BITMAP IDM_SEL sel.bmp
+
+

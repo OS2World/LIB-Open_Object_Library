@@ -1,0 +1,71 @@
+#include <os2.h>
+#include "dialog.h"
+
+DLGTEMPLATE IDD_SET LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+    DIALOG  "Dialog Title", IDD_SET, 93, 17, 224, 131, NOT FS_DLGBORDER |
+            WS_VISIBLE
+    BEGIN
+        PUSHBUTTON      ">>", IDP_NEXT, 167, 4, 40, 11
+                        PRESPARAMS PP_FONTNAMESIZE, "8.Helv"
+        PUSHBUTTON      "Help", ID_HELP, 11, 3, 39, 12, BS_HELP
+                        PRESPARAMS PP_FONTNAMESIZE, "8.Helv"
+        PUSHBUTTON      "<<", IDP_PREV, 125, 4, 40, 11
+                        PRESPARAMS PP_FONTNAMESIZE, "8.Helv"
+        AUTOCHECKBOX    "Check", 1007, 17, 87, 61, 10
+                        PRESPARAMS PP_FONTNAMESIZE, "8.Helv"
+        AUTOCHECKBOX    "Check", 1008, 17, 74, 80, 10
+                        PRESPARAMS PP_FONTNAMESIZE, "8.Helv"
+        GROUPBOX        "Settings", 115, 10, 67, 137, 39
+                        PRESPARAMS PP_FONTNAMESIZE, "8.Helv"
+    END
+END
+
+DLGTEMPLATE IDD_FINISH LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+    DIALOG  "Dialog Title", IDD_FINISH, 93, 17, 224, 131, NOT FS_DLGBORDER |
+            WS_VISIBLE
+    BEGIN
+        PUSHBUTTON      "Create", IDP_CREATE, 167, 4, 40, 11
+                        PRESPARAMS PP_FONTNAMESIZE, "8.Helv"
+        PUSHBUTTON      "Help", ID_HELP, 11, 3, 39, 12, BS_HELP
+                        PRESPARAMS PP_FONTNAMESIZE, "8.Helv"
+        PUSHBUTTON      "<<", IDP_PREV, 125, 4, 40, 11
+                        PRESPARAMS PP_FONTNAMESIZE, "8.Helv"
+        LTEXT           "Project Name:", 103, 12, 100, 58, 8
+                        PRESPARAMS PP_FONTNAMESIZE, "8.Helv"
+        ENTRYFIELD      "", 1003, 14, 91, 66, 6, ES_MARGIN
+                        PRESPARAMS PP_FONTNAMESIZE, "8.Helv"
+        LTEXT           "Directory:", 105, 12, 81, 41, 8
+                        PRESPARAMS PP_FONTNAMESIZE, "8.Helv"
+        ENTRYFIELD      "", 1004, 14, 73, 96, 6, ES_MARGIN
+                        PRESPARAMS PP_FONTNAMESIZE, "8.Helv"
+        PUSHBUTTON      "Browse", 1005, 114, 71, 35, 11
+                        PRESPARAMS PP_FONTNAMESIZE, "8.Helv"
+    END
+END
+
+DLGTEMPLATE DLG_START LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+    DIALOG  "Dialog Title", DLG_START, 93, 17, 224, 131, NOT FS_DLGBORDER |
+            WS_VISIBLE
+    BEGIN
+        PUSHBUTTON      ">>", IDP_NEXT, 167, 4, 40, 11
+                        PRESPARAMS PP_FONTNAMESIZE, "8.Helv"
+        LISTBOX         DLG_APP_LIST_APP, 10, 20, 118, 104, LS_OWNERDRAW
+                        PRESPARAMS PP_FONTNAMESIZE, "8.Helv"
+        PUSHBUTTON      "Help", ID_HELP, 11, 3, 39, 12, BS_HELP
+                        PRESPARAMS PP_FONTNAMESIZE, "8.Helv"
+        LTEXT           "Show this or that", 202,
+                        134, 57, 77, 68, DT_WORDBREAK
+                        PRESPARAMS PP_FONTNAMESIZE, "8.Helv"
+    END
+END
+
+DLGTEMPLATE DLG_MAIN LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+    DIALOG  "MyAssistant", DLG_MAIN, 80, 4, 236, 138, ,
+            FCF_SYSMENU | FCF_TITLEBAR
+    BEGIN
+    END
+END

@@ -1,0 +1,21 @@
+#include <os2.h>
+#include "resource.h"
+
+DLGTEMPLATE 105 LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+    DIALOG  "", 105, 31, 32, 153, 106, NOT FS_DLGBORDER | WS_VISIBLE
+    BEGIN
+        ENTRYFIELD      "", 106, 45, 86, 99, 8, ES_MARGIN
+        LTEXT           "Name:", 105, 13, 86, 25, 8
+        ENTRYFIELD      "", 107, 45, 72, 99, 8, ES_MARGIN
+        LTEXT           "Street:", 108, 9, 72, 29, 8
+        PUSHBUTTON      "OK", 109, 13, 6, 40, 14
+        PUSHBUTTON      "Cancel", 110, 60, 6, 40, 14
+        ENTRYFIELD      "", 111, 45, 58, 99, 8, ES_MARGIN
+        LTEXT           "City:", 112, 19, 58, 19, 8
+        AUTORADIOBUTTON "Male", 113, 27, 38, 33, 10, WS_TABSTOP
+        AUTORADIOBUTTON "Female", 114, 27, 27, 44, 10, WS_TABSTOP
+        GROUPBOX        "Sex", 115, 14, 23, 67, 31
+    END
+END
+

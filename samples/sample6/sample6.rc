@@ -1,0 +1,14 @@
+#include "os2.h"
+rcinclude "resource.h"
+
+MENU IDM_MENU
+BEGIN
+   SUBMENU "Main", IDM_MAIN
+   BEGIN
+      MENUITEM    "", IDM_RED, MIS_OWNERDRAW
+      MENUITEM    "", IDM_GREEN, MIS_OWNERDRAW
+      MENUITEM    "", IDM_BLUE, MIS_OWNERDRAW
+   END
+END
+
+

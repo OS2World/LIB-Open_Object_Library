@@ -1,0 +1,13 @@
+/*  this is a simple Rexx-script which will be executed by sample12 */
+
+/* Let the Rexx Interface of sample12 set the needed variables */
+INIT_VARS; 
+
+/* show the variable set by the application */
+say 'test.mac (REXX): Variable read:' TEST_VAR;
+
+/* call a function of sample12 */
+MyFunc('var 1', 'var 2');
+
+/* thatïs all */
+return ok;

@@ -1,0 +1,1 @@
+#define ID_SAMPLE10	100

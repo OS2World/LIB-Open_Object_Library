@@ -1,0 +1,7 @@
+NAME            Menu1   WINDOWAPI
+
+DESCRIPTION    'Menu1 - sample of the OOL'
+PROTMODE
+HEAPSIZE   36000
+STACKSIZE  36000
+

@@ -1,0 +1,7 @@
+NAME            sample5  WINDOWAPI
+
+
+DESCRIPTION    'StdPrgm Programs'
+PROTMODE
+HEAPSIZE        48000
+STACKSIZE       48000

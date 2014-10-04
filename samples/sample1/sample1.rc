@@ -1,0 +1,30 @@
+#include "resource.h"
+
+rcinclude "sample1.dlg"
+
+
+ICON IDM_MAIN sample1.ico
+
+MENU IDM_MAIN
+BEGIN
+   SUBMENU "~File",               IDM_FILE
+   BEGIN
+      MENUITEM "~Open...",        IDM_OPEN
+      MENUITEM "~Save",           IDM_SAVE
+      MENUITEM SEPARATOR
+      MENUITEM "~Close",          IDM_CLOSE
+   END
+   SUBMENU "~Edit",               IDM_EDIT
+   BEGIN
+      MENUITEM "Copy\tStrg+Ins",  IDM_COPY
+      MENUITEM "Cut\tShift+Del",  IDM_CUT
+      MENUITEM "Paste\tShift+Ins",IDM_PASTE
+      MENUITEM SEPARATOR
+      MENUITEM "Clear\tStrg+Del", IDM_CLEAR
+      MENUITEM SEPARATOR
+      MENUITEM "Search",          IDM_SEARCH
+      MENUITEM SEPARATOR
+      MENUITEM "Font...",         IDM_FONT
+   END
+END
+

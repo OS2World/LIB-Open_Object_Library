@@ -1,0 +1,8 @@
+NAME            Event2   WINDOWAPI
+
+DESCRIPTION    'Event2 - sample of the OOL'
+PROTMODE
+HEAPSIZE   36000
+STACKSIZE  36000
+
+

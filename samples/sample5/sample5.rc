@@ -1,0 +1,13 @@
+#include "resource.h"
+
+rcinclude sample5.dlg
+
+MENU IDM_MENU
+BEGIN
+   SUBMENU "Main", IDM_MAIN
+   BEGIN
+      MENUITEM    "OK", IDM_OK
+      MENUITEM    "Cancel", IDM_CANCEL
+   END
+END
+

@@ -1,0 +1,25 @@
+
+#include "resource.h"
+
+
+MENU IDM_EMPLOYE
+BEGIN
+   SUBMENU "View", IDM_VIEW
+      BEGIN
+         MENUITEM "Icon", IDM_ICON 
+         MENUITEM "Text", IDM_TEXT
+         MENUITEM "Detail", IDM_DETAIL
+         MENUITEM SEPARATOR
+         MENUITEM "Bitmap", IDM_BITMAP;
+      END
+   SUBMENU "Sort by", IDM_SORT
+      BEGIN
+         MENUITEM "Name", IDM_NAME
+         MENUITEM "Income", IDM_INCOME
+      END
+END
+
+
+
+
+

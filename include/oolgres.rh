@@ -1,0 +1,186 @@
+#define  IDR_GERMAN_BASE                        1000
+#define  IDR_ENGLISH_BASE                       2000
+
+#define  IDR_OOLGLIB_BASE                        100
+#define     IDR_IMPORTFILTER_BASE                IDR_OOLGLIB_BASE +  10
+#define     IDR_EXPORTFILTER_BASE                IDR_OOLGLIB_BASE +  40
+#define     IDR_STRINGDATA_BASE                  IDR_OOLGLIB_BASE +  70
+#define     IDR_TIFFSTRING_BASE                  IDR_OOLGLIB_BASE +  90
+#define     IDR_FILEDIALOG_BASE                  IDR_OOLGLIB_BASE + 100
+
+#define  IDR_FILTER_PARAMETERS                  (IDR_OOLGLIB_BASE + 0)
+#define  IDR_FILTER_PARAMETERS_WARP4            (IDR_OOLGLIB_BASE + 1)
+#define     IDC_NOTEBOOK                         100
+#define     IDR_COLOR_CONV_PAGE                 (IDR_OOLGLIB_BASE + 2)
+#define        IDC_BPP_CHANGE                    101
+#define        IDC_BPP                           102
+#define           IDC_BPP_MONOCHROME             103
+#define           IDC_BPP_EGA                    104
+#define           IDC_BPP_VGA                    105
+#define           IDC_BPP_HIGHCOLOR              106
+#define           IDC_BPP_TRUECOLOR              107
+#define           IDC_BPP_DIRECTCOLOR            108
+#define        IDC_DITHERING                     109
+#define           IDC_DITHERING_NEAREST          110
+#define           IDC_DITHERING_ERRORDIFFUSION   111
+#define           IDC_DITHERING_SMALL_HALFTONE   112
+#define           IDC_DITHERING_LARGE_HALFTONE   113
+#define           IDC_DITHERING_OPTIMIZED        114
+#define           IDC_DITHERING_MEDIANCUT        115
+#define        IDC_PALETTE_CAPTION               116
+#define        IDC_PALETTE                       117
+#define           IDR_PALETTE_GREYSCALE         (IDR_STRINGDATA_BASE +  0)
+#define           IDR_PALETTE_1_BPP             (IDR_STRINGDATA_BASE +  1)
+#define           IDR_PALETTE_4_BPP_8           (IDR_STRINGDATA_BASE +  2)
+#define           IDR_PALETTE_4_BPP_16          (IDR_STRINGDATA_BASE +  3)
+#define           IDR_PALETTE_8_BPP_666         (IDR_STRINGDATA_BASE +  4)
+#define           IDR_PALETTE_8_BPP_784         (IDR_STRINGDATA_BASE +  5)
+#define           IDR_PALETTE_16_BPP_555        (IDR_STRINGDATA_BASE +  6)
+#define           IDR_PALETTE_16_BPP_565        (IDR_STRINGDATA_BASE +  7)
+#define           IDR_PALETTE_TRUECOLOR         (IDR_STRINGDATA_BASE +  8)
+#define           IDR_PALETTE_REDSCALE          (IDR_STRINGDATA_BASE +  9)
+#define           IDR_PALETTE_GREENSCALE        (IDR_STRINGDATA_BASE + 10)
+#define           IDR_PALETTE_BLUESCALE         (IDR_STRINGDATA_BASE + 11)
+#define        IDC_PALETTE_ENTRIES_CAPTION       118
+#define           IDC_PALETTE_ENTRIES            119
+#define        IDC_PRECISION_CAPTION             120
+#define           IDC_PRECISION_RED              121
+#define           IDC_PRECISION_GREEN            122
+#define           IDC_PRECISION_BLUE             123
+#define           IDC_PRECISION_BYTES            124
+
+#define     IDR_BITMAP_IMPORT                   (IDR_IMPORTFILTER_BASE + BFT_Bitmap)
+#define     IDR_BITMAP_EXPORT                   (IDR_EXPORTFILTER_BASE + BFT_Bitmap)
+#define        IDC_BITMAP_INDEX_CAPTION          125
+#define        IDC_BITMAP_INDEX                  126
+#define        IDC_BITMAP_VERSION                127
+#define           IDC_BITMAP_OS2_11              128
+#define           IDC_BITMAP_OS2_20              129
+#define        IDC_BITMAP_PALETTE                130
+#define           IDC_BITMAP_INVERSE_NOTHING     131
+#define           IDC_BITMAP_INVERSE_PALETTE     132
+#define           IDC_BITMAP_INVERSE_BITMAP      133
+#define           IDC_BITMAP_FORCE_DARKFG        134
+#define           IDC_BITMAP_FORCE_LIGHTFG       135
+#define     IDR_GEM_EXPORT                      (IDR_EXPORTFILTER_BASE + BFT_GEM)
+#define        IDC_GEM_GREYSCALE                 136
+#define        IDC_GEM_XIMG                      137
+#define        IDC_GEM_PIXEL_SIZE                138
+#define           IDC_GEM_PIXEL_WIDTH            139
+#define           IDC_GEM_X                      140
+#define           IDC_GEM_PIXEL_HEIGHT           141
+#define           IDC_GEM_MICRONS                142
+#define     IDR_GIF_IMPORT                      (IDR_IMPORTFILTER_BASE + BFT_GIF)
+#define     IDR_GIF_EXPORT                      (IDR_EXPORTFILTER_BASE + BFT_GIF)
+#define        IDC_GIF_INDEX_CAPTION             143
+#define        IDC_GIF_INDEX                     144
+#define        IDC_GIF_IGNORE_ERRORS             145
+#define        IDC_GIF_INTERLACED                146
+#define        IDC_GIF_TRANS_CAPTION             147
+#define           IDC_GIF_TRANSINDEX             148
+#define           IDC_GIF_TRANSAUTO              149
+#define        IDC_GIF_BKGND_CAPTION             150
+#define           IDC_GIF_BKGNDINDEX             151
+#define        IDC_GIF_POS                       152
+#define           IDC_GIF_POS_X                  153
+#define           IDC_GIF_I                      154
+#define           IDC_GIF_POS_Y                  156
+#define        IDC_GIF_SCREEN_SIZE               157
+#define           IDC_GIF_SCREEN_WIDTH           158
+#define           IDC_GIF_X                      159
+#define           IDC_GIF_SCREEN_HEIGHT          160
+#define           IDC_GIF_PIXEL                  161
+#define     IDR_GREYMAP_IMPORT                  (IDR_IMPORTFILTER_BASE + BFT_Greymap)
+#define     IDR_GREYMAP_EXPORT                  (IDR_EXPORTFILTER_BASE + BFT_Greymap)
+#define        IDC_GREYMAP_SHADES                162
+#define           IDC_GREYMAP_GREY               163
+#define           IDC_GREYMAP_RED                164
+#define           IDC_GREYMAP_GREEN              165
+#define           IDC_GREYMAP_BLUE               166
+#define     IDR_IAX_IMPORT                      (IDR_IMPORTFILTER_BASE + BFT_IAX)
+#define     IDR_IAX_EXPORT                      (IDR_EXPORTFILTER_BASE + BFT_IAX)
+#define        IDC_IAX_WIDTH_CAPTION             167
+#define        IDC_IAX_WIDTH                     168
+#define        IDC_IAX_SHADES                    169
+#define           IDC_IAX_GREY                   170
+#define           IDC_IAX_RED                    171
+#define           IDC_IAX_GREEN                  172
+#define           IDC_IAX_BLUE                   173
+#define     IDR_ILBM_EXPORT                     (IDR_EXPORTFILTER_BASE + BFT_ILBM)
+#define        IDC_ILBM_HAM6                     174
+#define        IDC_ILBM_TRANS_CAPTION            175
+#define           IDC_ILBM_TRANSAUTO             176
+#define           IDC_ILBM_TRANSINDEX            177
+#define        IDC_ILBM_POS                      178
+#define           IDC_ILBM_POS_X                 179
+#define           IDC_ILBM_I                     180
+#define           IDC_ILBM_POS_Y                 181
+#define        IDC_ILBM_SCREEN_SIZE              182
+#define           IDC_ILBM_SCREEN_WIDTH          183
+#define           IDC_ILBM_X                     184
+#define           IDC_ILBM_SCREEN_HEIGHT         185
+#define           IDC_ILBM_PIXEL                 186
+#define        IDC_ILBM_ASPECT                   187
+#define           IDC_ILBM_ASPECT_X              188
+#define           IDC_ILBM_P                     189
+#define           IDC_ILBM_ASPECT_Y              190
+#define     IDR_JPEG_EXPORT                     (IDR_EXPORTFILTER_BASE + BFT_JPEG)
+#define        IDC_JPEG_PROGRESSIVE              191
+#define        IDC_JPEG_QUALITY_CAPTION          192
+#define           IDC_JPEG_QUALITY               193
+#define           IDC_JPEG_QUALITY_VALUE         194
+#define     IDR_KIPS_IMPORT                     (IDR_IMPORTFILTER_BASE + BFT_KIPS)
+#define     IDR_KIPS_EXPORT                     (IDR_EXPORTFILTER_BASE + BFT_KIPS)
+#define        IDC_KIPS_EXTENSION                195
+#define           IDC_KIPS_PAL                   196
+#define           IDC_KIPS_KPL                   197
+#define     IDR_PCX_IMPORT                      (IDR_IMPORTFILTER_BASE + BFT_PCX)
+#define        IDC_PCX_FIXLINES                  198
+#define     IDR_PSEG_IMPORT                     (IDR_IMPORTFILTER_BASE + BFT_PSeg)
+#define        IDC_PSEG_FIXRECORDS               199
+#define     IDR_PSEG_EXPORT                      (IDR_EXPORTFILTER_BASE + BFT_PSeg)
+#define        IDC_PSEG_DOUBLE                   200
+#define     IDR_SPRITE_IMPORT                   (IDR_IMPORTFILTER_BASE + BFT_Sprite)
+#define        IDC_SPRITE_INDEX_CAPTION          201
+#define           IDC_SPRITE_INDEX               202
+#define     IDR_TARGA_EXPORT                    (IDR_EXPORTFILTER_BASE + BFT_Targa)
+#define        IDC_TARGA_DIRECTION               203
+#define           IDC_TARGA_YDOWN                204
+#define           IDC_TARGA_YUP                  205
+#define     IDR_TIFF_IMPORT                     (IDR_IMPORTFILTER_BASE + BFT_TIFF)
+#define        IDC_TIFF_INDEX_CAPTION            206
+#define           IDC_TIFF_INDEX                 207
+#define     IDR_TIFF_EXPORT                     (IDR_EXPORTFILTER_BASE + BFT_TIFF)
+#define        IDC_TIFF_LZW                      208
+#define        IDC_TIFF_MONOPAL                  209
+#define        IDC_TIFF_TAGS                     210
+#define           IDC_TIFF_TAG_CAPTION           211
+#define              IDC_TIFF_TAG                212
+#define                 IDR_ARTIST              (IDR_TIFFSTRING_BASE + BFP_TIFF_ARTIST)
+#define                 IDR_SOFTWARE            (IDR_TIFFSTRING_BASE + BFP_TIFF_SOFTWARE)
+/* #define                 IDR_MAKE                (IDR_TIFFSTRING_BASE + BFP_TIFF_MAKE) */
+#define                 IDR_MODEL               (IDR_TIFFSTRING_BASE + BFP_TIFF_MODEL)
+#define                 IDR_HOST                (IDR_TIFFSTRING_BASE + BFP_TIFF_HOST)
+#define                 IDR_DOCNAME             (IDR_TIFFSTRING_BASE + BFP_TIFF_DOCNAME)
+#define                 IDR_PAGENAME            (IDR_TIFFSTRING_BASE + BFP_TIFF_PAGENAME)
+#define                 IDR_DESCRIPTION         (IDR_TIFFSTRING_BASE + BFP_TIFF_DESCRIPTION)
+#define              IDC_TIFF_TAG_TEXT           213
+#define           IDC_TIFF_REPLACE               214
+#define              IDC_TIFF_REPLACE_CAPTION    215
+#define              IDC_TIFF_REPLACEMENT        216
+#define     IDR_YUV12C_EXPORT                   (IDR_EXPORTFILTER_BASE + BFT_YUV12C)
+#define        IDC_YUV12C_POSITION               217
+#define           IDC_YUV12C_POSITION_X          218
+#define           IDC_YUV12C_I                   219
+#define           IDC_YUV12C_POSITION_Y          220
+                                                  
+#define   IDR_XGFD_ALLFILES                     (IDR_FILEDIALOG_BASE + 0)
+#define   IDR_XGFD_ALLSUPPORTED                 (IDR_FILEDIALOG_BASE + 1)
+#define   IDR_XGFD_OPEN                         (IDR_FILEDIALOG_BASE + 2)
+#define   IDR_XGFD_OPEN_TITLE                   (IDR_FILEDIALOG_BASE + 3)
+#define   IDR_XGFD_SAVE                         (IDR_FILEDIALOG_BASE + 4)
+#define   IDR_XGFD_SAVE_TITLE                   (IDR_FILEDIALOG_BASE + 5)
+#define   IDR_XGFD_CANCEL                       (IDR_FILEDIALOG_BASE + 6)
+#define   IDR_XGFD_OPTIONS                      (IDR_FILEDIALOG_BASE + 7)
+#define   IDR_XGFD_HELP                         (IDR_FILEDIALOG_BASE + 8)
+

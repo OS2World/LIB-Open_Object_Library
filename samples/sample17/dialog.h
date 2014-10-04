@@ -1,0 +1,12 @@
+#define DLG_MAIN                    100
+#define DLG_PUSH                    200
+#define PUSH_1                      201
+#define IDP_NEXT                    203
+#define DLG_NEXT                    300
+#define IDP_PREV                    303
+#define IDD_SET                     400
+#define IDD_FINISH                  500
+#define IDP_CREATE                  501
+#define DLG_APP_LIST_APP            1006
+#define DLG_START                   600
+#define ID_HELP                     65535

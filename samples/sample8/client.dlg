@@ -1,0 +1,19 @@
+#ifndef OS2_INCLUDED
+   #include <os2.h>
+#endif
+DLGINCLUDE 1 "C:\source\ool4\samples\sample8\resource.h"
+
+DLGTEMPLATE IDM_MAIN LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+    DIALOG  "", IDM_MAIN, 31, 47, 153, 91, , FCF_SYSMENU | FCF_TITLEBAR
+    BEGIN
+        LTEXT           "Field 1:", 103, 16, 68, 30, 8
+        LTEXT           "Field 2:", 104, 16, 51, 30, 8
+        LTEXT           "Field 3:", 105, 16, 33, 30, 8
+        LTEXT           "Field 4:", 106, 16, 15, 30, 8
+        ENTRYFIELD      "", ENTRY_ONE, 50, 68, 87, 8, ES_MARGIN
+        ENTRYFIELD      "", ENTRY_TWO, 50, 50, 87, 8, ES_MARGIN
+        ENTRYFIELD      "", ENTRY_THREE, 50, 33, 87, 8, ES_MARGIN
+        ENTRYFIELD      "", ENTRY_FOUR, 50, 16, 87, 8, ES_MARGIN
+    END
+END

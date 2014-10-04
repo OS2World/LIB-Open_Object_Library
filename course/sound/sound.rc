@@ -1,0 +1,10 @@
+
+#include "resource.h"
+
+
+BITMAP IDP_PLAY play.bmp
+BITMAP IDP_STOP halt.bmp
+BITMAP IDP_BACK back.bmp
+BITMAP IDP_OPEN sel.bmp
+
+

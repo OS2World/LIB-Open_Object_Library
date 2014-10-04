@@ -1,0 +1,30 @@
+#ifndef OS2_INCLUDED
+   #include <os2.h>
+#endif
+DLGINCLUDE 1 "C:\source\OOL\samples\sample14\dialog.h"
+
+DLGTEMPLATE IDM_MODELESSDIALOG LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+    DIALOG  "Modeless Dialog", IDM_MODELESSDIALOG, 106, 40, 148, 84, 
+            WS_VISIBLE, FCF_SYSMENU | FCF_TITLEBAR
+    BEGIN
+        DEFPUSHBUTTON   "OK", PUSH_OK, 5, 4, 40, 14
+        LTEXT           "Press <OK> to leave the dialog!", 102, 6, 17, 137, 
+                        14, DT_WORDBREAK
+        LTEXT           "If you click on the main-window you see that it is "
+                        "still active", 103, 6, 38, 103, 40, DT_WORDBREAK
+    END
+END
+
+DLGTEMPLATE IDM_MODALDIALOG LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+    DIALOG  "Modal Dialog", IDM_MODALDIALOG, 55, 46, 176, 92, , FCF_SYSMENU | 
+            FCF_TITLEBAR
+    BEGIN
+        DEFPUSHBUTTON   "OK", PUSH_OK, 2, 6, 40, 14
+        LTEXT           "Press <OK> to leave to modal dialog!", 201, 3, 20, 
+                        172, 12, DT_WORDBREAK
+        LTEXT           "If you click on the main-window you see that it is "
+                        "not active", 103, 5, 48, 103, 40, DT_WORDBREAK
+    END
+END

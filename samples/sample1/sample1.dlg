@@ -1,0 +1,18 @@
+#include <os2.h>
+#include "resource.h"
+
+DLGTEMPLATE DIALOG_SEARCH LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+    DIALOG  "Search...", DIALOG_SEARCH, 86, 50, 155, 84, , FCF_SYSMENU | FCF_TITLEBAR
+    BEGIN
+        ENTRYFIELD      "", ENTRY_SEARCH, 44, 67, 89, 8, ES_MARGIN
+        LTEXT           "Search:", 502, 10, 67, 31, 8
+        LTEXT           "Replace:", 503, 5, 54, 36, 8
+        ENTRYFIELD      "", ENTRY_REPLACE, 44, 53, 89, 8, ES_MARGIN
+        AUTOCHECKBOX    "ignore case", CHECK_CASE, 10, 33, 61, 10
+        AUTOCHECKBOX    "replace all", CHECK_REPLACE, 10, 22, 58, 10
+        PUSHBUTTON      "Search", PUSH_SEARCH, 10, 5, 40, 14
+        PUSHBUTTON      "Replace", PUSH_REPLACE, 59, 5, 40, 14
+        PUSHBUTTON      "Cancel", PUSH_CANCEL, 106, 5, 40, 14
+    END
+END

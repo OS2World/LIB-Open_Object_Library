@@ -1,0 +1,7 @@
+NAME            Container   WINDOWAPI
+
+DESCRIPTION    'Container - sample of the OOL'
+PROTMODE
+HEAPSIZE   36000
+STACKSIZE  36000
+

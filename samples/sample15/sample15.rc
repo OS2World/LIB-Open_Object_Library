@@ -1,0 +1,43 @@
+
+#include "resource.h"
+
+ICON IDM_MENU sample15.ico
+
+MENU IDM_MENU
+BEGIN
+   SUBMENU "File", IDM_FILE
+   BEGIN
+      MENUITEM    "Open...\tCtrl+O",      IDM_OPEN	
+      MENUITEM    SEPARATOR	
+      MENUITEM    "Save\tCtrl+S",         IDM_SAVE
+      MENUITEM    "Save as...",           IDM_SAVEAS
+      MENUITEM    SEPARATOR	
+      MENUITEM    "Print",                IDM_PRINT
+      MENUITEM    SEPARATOR	
+      MENUITEM    "Close",                IDM_CLOSE
+   END
+   SUBMENU "Edit", IDM_EDIT
+   BEGIN
+      MENUITEM    "Cut\tShift+Del",       IDM_CUT
+      MENUITEM    "Copy\tCtrl+Ins",       IDM_COPY
+      MENUITEM    "Paste\tShift+Ins",     IDM_PASTE
+      MENUITEM    SEPARATOR	
+      MENUITEM    "Clear\tDel",           IDM_CLEAR
+   END	
+   SUBMENU "Windows", IDM_WINDOW
+   BEGIN
+      MENUITEM    "~Tile",       IDM_TILE
+      MENUITEM    "~Cascade",       IDM_CASCADE
+      MENUITEM    "~Next",       IDM_NEXT_WIN		
+      MENUITEM    "~Prev",       IDM_PREV_WIN
+	END   
+END
+
+ACCELTABLE IDM_MENU
+BEGIN
+ "O", IDM_OPEN, CHAR, CONTROL
+ "o", IDM_OPEN, CHAR, CONTROL
+ "S", IDM_SAVE, CHAR, CONTROL
+ "s", IDM_SAVE, CHAR, CONTROL
+END     
+

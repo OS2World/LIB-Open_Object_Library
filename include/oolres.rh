@@ -1,0 +1,29 @@
+/* definitions for langage independent resources */
+#define IDR_BUBBLE1        10000
+#define IDR_BUBBLE2        10001
+#define IDR_TRAFFIC        10010
+#define IDR_TRAFFIC_GREEN  10011
+#define IDR_TRAFFIC_YELLOW 10012
+#define IDR_TRAFFIC_RED    10013
+#define IDR_TRAFFIC_RY     10014
+#define IDR_LED_OFF        10020
+#define IDR_LED_ON         10021
+#define IDR_PEAK_GREEN     10030
+#define IDR_PEAK_RED       10031
+#define IDR_RESTART        10040
+
+/* language dependant resources     */
+/* 1000-1999   german               */
+/* 2000-2999   english              */
+/* 3000-3999   francais             */
+/* 4000-4999   italiano             */
+
+/* printer dialog */
+#define IDD_SELPRINT_GER      1000
+#define IDD_SELPRINT_ENG      2000
+#define IDD_SELPRINT_FRA      3000
+#define IDD_SELPRINT_ITA      4000
+#define IDC_LISTBOX           1001
+#define IDC_TOFILE            1002
+#define IDC_ENTRY             1003
+#define IDC_JOBPROP           1005

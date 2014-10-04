@@ -1,0 +1,22 @@
+#include "resource.h"
+
+MENU IDM_MAIN
+BEGIN
+   SUBMENU "~File",               IDM_FILE
+   BEGIN
+      MENUITEM "~Open...",        IDM_FILE_OPEN
+      MENUITEM "~Save...",        IDM_FILE_SAVE
+      MENUITEM SEPARATOR
+      MENUITEM "~Exit",           IDM_FILE_EXIT
+   END
+   SUBMENU "~Edit",               IDM_EDIT
+   BEGIN
+      MENUITEM "~Copy",           IDM_EDIT_COPY
+      MENUITEM "~Paste",          IDM_EDIT_PASTE
+   END
+   SUBMENU "~Option",             IDM_OPTION
+   BEGIN
+      MENUITEM "~Stretch",        IDM_OPTION_STRETCH
+   END
+END
+

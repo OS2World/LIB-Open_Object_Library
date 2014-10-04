@@ -1,0 +1,360 @@
+DLGTEMPLATE (IDR_GERMAN_BASE + IDR_FILTER_PARAMETERS) LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+   DIALOG  "- Filterparameter", (IDR_GERMAN_BASE + IDR_FILTER_PARAMETERS), 
+      0, 0, 317, 171, , FCF_SYSMENU | FCF_TITLEBAR
+      PRESPARAMS PP_BACKGROUNDCOLORINDEX SYSCLR_DIALOGBACKGROUND
+   BEGIN
+      NOTEBOOK             IDC_NOTEBOOK,   0,  17, 317, 146, WS_VISIBLE | 
+         BKS_SPIRALBIND | BKS_BACKPAGESBR | BKS_SQUARETABS | BKS_TABTEXTLEFT | BKS_STATUSTEXTLEFT
+      PUSHBUTTON  "OK",          DID_OK, 122,   5,  60,  12
+      PUSHBUTTON  "Abbruch", DID_CANCEL, 187,   5,  60,  12
+   END
+END
+   
+DLGTEMPLATE (IDR_GERMAN_BASE + IDR_FILTER_PARAMETERS_WARP4) LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+   DIALOG  "- Filterparameter", (IDR_GERMAN_BASE + IDR_FILTER_PARAMETERS), 
+      0, 0, 307, 181, , FCF_SYSMENU | FCF_TITLEBAR | 0x04000000
+   BEGIN
+      NOTEBOOK             IDC_NOTEBOOK,   0, 20, 307, 156, 0x800 | WS_VISIBLE
+      PUSHBUTTON  "OK",          DID_OK,  92,  5,  60,  12
+      PUSHBUTTON  "Abbruch", DID_CANCEL, 157,  5,  60,  12
+   END
+END
+
+DLGTEMPLATE (IDR_GERMAN_BASE + IDR_COLOR_CONV_PAGE) LOADONCALL MOVEABLE DISCARDABLE 
+BEGIN
+   FRAME  "", (IDR_GERMAN_BASE + IDR_COLOR_CONV_PAGE), 0, 0, 287, 116
+   BEGIN
+      AUTOCHECKBOX  "Farbformat ~Ñndern",                       IDC_BPP_CHANGE,  11,104, 130, 10
+      
+      LTEXT         "~Palette",                            IDC_PALETTE_CAPTION,  11, 15,  80, 10, DT_MNEMONIC
+         COMBOBOX      "",                                         IDC_PALETTE,  11,-24,  80, 40, CBS_DROPDOWN
+      LTEXT         "~EintrÑge",                   IDC_PALETTE_ENTRIES_CAPTION, 101, 15,  60, 10, DT_MNEMONIC
+         SPINBUTTON                                        IDC_PALETTE_ENTRIES, 101,  6,  60, 10, SPBS_NUMERICONLY | SPBS_MASTER | SPBS_JUSTRIGHT
+      LTEXT         "~PrÑzision",                        IDC_PRECISION_CAPTION, 171, 15, 105, 10, DT_MNEMONIC
+         SPINBUTTON                                          IDC_PRECISION_RED, 171,  6,  25, 10, SPBS_NUMERICONLY | SPBS_MASTER | SPBS_JUSTCENTER
+            PRESPARAMS PP_FOREGROUNDCOLORINDEX CLR_RED
+         SPINBUTTON                                        IDC_PRECISION_GREEN, 198,  6,  25, 10, SPBS_NUMERICONLY | SPBS_MASTER | SPBS_JUSTCENTER
+            PRESPARAMS PP_FOREGROUNDCOLORINDEX CLR_GREEN
+         SPINBUTTON                                         IDC_PRECISION_BLUE, 225,  6,  25, 10, SPBS_NUMERICONLY | SPBS_MASTER | SPBS_JUSTCENTER
+            PRESPARAMS PP_FOREGROUNDCOLORINDEX CLR_BLUE
+         LTEXT         "Byte",                             IDC_PRECISION_BYTES, 252,  6,  24, 10
+      
+      GROUPBOX  "Farbtiefe",                                           IDC_BPP,  11, 30, 130, 72
+         AUTORADIOBUTTON "~1 bpp - Monochrom",              IDC_BPP_MONOCHROME,  16, 83, 120, 10
+         AUTORADIOBUTTON "~4 bpp - EGA/VGA",                       IDC_BPP_EGA,  16, 73, 120, 10
+         AUTORADIOBUTTON "~8 bpp - VGA",                           IDC_BPP_VGA,  16, 63, 120, 10
+         AUTORADIOBUTTON "1~6 bpp - HighColor",              IDC_BPP_HIGHCOLOR,  16, 53, 120, 10
+         AUTORADIOBUTTON "~24 bpp - TrueColor",              IDC_BPP_TRUECOLOR,  16, 43, 120, 10
+         AUTORADIOBUTTON "3~2 bpp - DirectColor",          IDC_BPP_DIRECTCOLOR,  16, 33, 120, 10
+
+      GROUPBOX  "Farbreduktionsmethode",                         IDC_DITHERING, 146, 30, 130, 72
+         AUTORADIOBUTTON "~nÑheste Farbe",               IDC_DITHERING_NEAREST, 151, 83, 120, 10
+         AUTORADIOBUTTON "Fehler~verteilung",     IDC_DITHERING_ERRORDIFFUSION, 151, 73, 120, 10
+         AUTORADIOBUTTON "~Halbton, fein",        IDC_DITHERING_SMALL_HALFTONE, 151, 63, 120, 10
+         AUTORADIOBUTTON "Halbton, ~grob",        IDC_DITHERING_LARGE_HALFTONE, 151, 53, 120, 10
+         AUTORADIOBUTTON "Frequenz~analyse",           IDC_DITHERING_OPTIMIZED, 151, 43, 120, 10
+         AUTORADIOBUTTON "~Durchschnittsbildung",      IDC_DITHERING_MEDIANCUT, 151, 33, 120, 10
+   END
+END
+
+DLGTEMPLATE (IDR_GERMAN_BASE + IDR_BITMAP_IMPORT) LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+   FRAME  "", (IDR_GERMAN_BASE + IDR_BITMAP_IMPORT), 0, 0, 287, 116
+   BEGIN
+      LTEXT     "Bitmap~index",                       IDC_BITMAP_INDEX_CAPTION,  81, 74,  63, 10, DT_MNEMONIC
+      SPINBUTTON                                              IDC_BITMAP_INDEX, 146, 74,  50, 10, SPBS_NUMERICONLY | SPBS_MASTER | SPBS_JUSTRIGHT
+      GROUPBOX  "Palettenoptionen",                         IDC_BITMAP_PALETTE,  76, 20, 135, 42
+         AUTORADIOBUTTON  "~Farben beibehalten",    IDC_BITMAP_INVERSE_NOTHING,  81, 43, 125, 10
+         AUTORADIOBUTTON  "~Palette invertieren",   IDC_BITMAP_INVERSE_PALETTE,  81, 33, 125, 10
+         AUTORADIOBUTTON  "~Bitmap invertieren",     IDC_BITMAP_INVERSE_BITMAP,  81, 23, 125, 10
+   END
+END
+
+DLGTEMPLATE (IDR_GERMAN_BASE + IDR_BITMAP_EXPORT) LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+   FRAME  "", (IDR_GERMAN_BASE + IDR_BITMAP_EXPORT), 0, 0, 287, 116
+   BEGIN
+      GROUPBOX  "Variante",                                IDC_BITMAP_VERSION,  76, 80, 135, 32
+         AUTORADIOBUTTON "OS/2 ~1.1",                       IDC_BITMAP_OS2_11,  81, 93, 125, 10
+         AUTORADIOBUTTON "OS/2 ~2.0 / Windows 3.0",         IDC_BITMAP_OS2_20,  81, 83, 125, 10
+      GROUPBOX  "Palettenoptionen",                        IDC_BITMAP_PALETTE,  76, 10, 135, 62
+         AUTORADIOBUTTON "~Farben beibehalten",    IDC_BITMAP_INVERSE_NOTHING,  81, 53, 125, 10
+         AUTORADIOBUTTON "~Palette invertieren",   IDC_BITMAP_INVERSE_PALETTE,  81, 43, 125, 10
+         AUTORADIOBUTTON "~Bitmap invertieren",     IDC_BITMAP_INVERSE_BITMAP,  81, 33, 125, 10
+         AUTORADIOBUTTON "~Dunkler Vordergrund",      IDC_BITMAP_FORCE_DARKFG,  81, 23, 125, 10
+         AUTORADIOBUTTON "~Heller Vordergrund",      IDC_BITMAP_FORCE_LIGHTFG,  81, 13, 125, 10
+   END
+END
+
+DLGTEMPLATE (IDR_GERMAN_BASE + IDR_GEM_EXPORT) LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+   FRAME  "", (IDR_GERMAN_BASE + IDR_GEM_EXPORT), 0, 0, 287, 116
+   BEGIN
+      AUTOCHECKBOX  "~Graustufendatei schreiben",            IDC_GEM_GREYSCALE,  61, 68, 165, 10
+      AUTOCHECKBOX  "~Palette schreiben (XIMG-Format)",           IDC_GEM_XIMG,  61, 58, 165, 10
+      LTEXT         "Pi~xelgrî·e"                           IDC_GEM_PIXEL_SIZE,  61, 43,  63, 10, DT_MNEMONIC
+         SPINBUTTON                                        IDC_GEM_PIXEL_WIDTH,  81, 33,  40, 10, SPBS_NUMERICONLY | SPBS_MASTER | SPBS_JUSTRIGHT
+         CTEXT      "x"                                              IDC_GEM_X, 124, 33,  12, 10
+         SPINBUTTON                                       IDC_GEM_PIXEL_HEIGHT, 139, 33,  40, 10, SPBS_NUMERICONLY | SPBS_MASTER | SPBS_JUSTRIGHT
+         LTEXT      "microns"                                  IDC_GEM_MICRONS, 182, 33,  64, 10
+   END
+END
+
+DLGTEMPLATE (IDR_GERMAN_BASE + IDR_GIF_IMPORT) LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+   FRAME  "", (IDR_GERMAN_BASE + IDR_GIF_IMPORT), 0, 0, 287, 116
+   BEGIN
+      AUTOCHECKBOX  "~Fehler ignorieren",                IDC_GIF_IGNORE_ERRORS,  81, 68, 125, 10
+      LTEXT         "Bitmap~index",                      IDC_GIF_INDEX_CAPTION,  81, 53,  63, 10, DT_MNEMONIC
+         SPINBUTTON                                              IDC_GIF_INDEX, 146, 53,  50, 10, SPBS_NUMERICONLY | SPBS_MASTER | SPBS_JUSTRIGHT
+   END
+END
+
+DLGTEMPLATE (IDR_GERMAN_BASE + IDR_GIF_EXPORT) LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+   FRAME  "", (IDR_GERMAN_BASE + IDR_GIF_EXPORT), 0, 0, 287, 116
+   BEGIN
+      AUTOCHECKBOX  "~Interlaced Bitmap",                   IDC_GIF_INTERLACED,  31, 83, 165, 10
+      AUTOCHECKBOX  "~Transparente Farbe"                IDC_GIF_TRANS_CAPTION,  31, 68, 107, 10
+//         ENTRYFIELD "",                                      IDC_GIF_TRANS_BGR, 141, 69,  22,  8, ES_MARGIN | ES_READONLY NOT WS_TABSTOP
+         SPINBUTTON                                         IDC_GIF_TRANSINDEX, 169, 68,  40, 10, SPBS_NUMERICONLY | SPBS_MASTER | SPBS_JUSTRIGHT
+         AUTOCHECKBOX  "~automatisch"                        IDC_GIF_TRANSAUTO, 214, 68,  60, 10
+      LTEXT         "~Hintergrundfarbe"                  IDC_GIF_BKGND_CAPTION,  31, 53, 107, 10, DT_MNEMONIC
+//         ENTRYFIELD "",                                      IDC_GIF_BKGND_BGR, 141, 54,  22,  8, ES_MARGIN | ES_READONLY NOT WS_TABSTOP
+         SPINBUTTON                                         IDC_GIF_BKGNDINDEX, 169, 53,  40, 10, SPBS_NUMERICONLY | SPBS_MASTER | SPBS_JUSTRIGHT
+      LTEXT         "~Position"                                    IDC_GIF_POS,  31, 38,  87, 10, DT_MNEMONIC
+      SPINBUTTON                                                 IDC_GIF_POS_X, 111, 38,  40, 10, SPBS_NUMERICONLY | SPBS_MASTER | SPBS_JUSTRIGHT
+      CTEXT         "/"                                              IDC_GIF_I, 154, 38,  12, 10
+      SPINBUTTON                                                 IDC_GIF_POS_Y, 169, 38,  40, 10, SPBS_NUMERICONLY | SPBS_MASTER | SPBS_JUSTRIGHT
+      LTEXT         "~Bildschirmgrî·e"                     IDC_GIF_SCREEN_SIZE,  31, 23,  77, 10, DT_MNEMONIC
+      SPINBUTTON                                          IDC_GIF_SCREEN_WIDTH, 111, 23,  40, 10, SPBS_NUMERICONLY | SPBS_MASTER | SPBS_JUSTRIGHT
+      CTEXT         "x"                                              IDC_GIF_X, 154, 23,  12, 10
+      SPINBUTTON                                         IDC_GIF_SCREEN_HEIGHT, 169, 23,  40, 10, SPBS_NUMERICONLY | SPBS_MASTER | SPBS_JUSTRIGHT
+      LTEXT         "Pixel"                                      IDC_GIF_PIXEL, 214, 23,  54, 10
+   END
+END
+
+DLGTEMPLATE (IDR_GERMAN_BASE + IDR_GREYMAP_IMPORT) LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+   FRAME  "", (IDR_GERMAN_BASE + IDR_GREYMAP_IMPORT), 0, 0, 287, 116
+   BEGIN
+      GROUPBOX  "Datei enthÑlt",                            IDC_GREYMAP_SHADES,  76, 30, 135, 52
+         AUTORADIOBUTTON "~Graustufen",                       IDC_GREYMAP_GREY,  81, 63, 125, 10
+         AUTORADIOBUTTON  "~Rotschattierungen",                IDC_GREYMAP_RED,  81, 53, 125, 10
+         AUTORADIOBUTTON "~GrÅnschattierungen",              IDC_GREYMAP_GREEN,  81, 43, 125, 10
+         AUTORADIOBUTTON "~Blauschattierungen",               IDC_GREYMAP_BLUE,  81, 33, 125, 10
+   END
+END
+
+DLGTEMPLATE (IDR_GERMAN_BASE + IDR_IAX_IMPORT) LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+   FRAME  "", (IDR_GERMAN_BASE + IDR_IAX_IMPORT), 0, 0, 287, 116
+   BEGIN
+      LTEXT    "Br~eite",                                IDC_IAX_WIDTH_CAPTION,  81, 88,  83, 10, DT_MNEMONIC
+      SPINBUTTON                                                 IDC_IAX_WIDTH, 146, 88,  50, 10, SPBS_NUMERICONLY | SPBS_MASTER | SPBS_JUSTRIGHT
+      GROUPBOX  "Datei enthÑlt",                                IDC_IAX_SHADES,  76, 30, 135, 52
+         AUTORADIOBUTTON "~Graustufen",                           IDC_IAX_GREY,  81, 63, 125, 10
+         AUTORADIOBUTTON "~Rotschattierungen",                     IDC_IAX_RED,  81, 53, 125, 10
+         AUTORADIOBUTTON "~GrÅnschattierungen",                  IDC_IAX_GREEN,  81, 43, 125, 10
+         AUTORADIOBUTTON "~Blauschattierungen",                   IDC_IAX_BLUE,  81, 33, 125, 10
+   END
+END
+
+DLGTEMPLATE (IDR_GERMAN_BASE + IDR_ILBM_EXPORT) LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+   FRAME  "", (IDR_GERMAN_BASE + IDR_ILBM_EXPORT), 0, 0, 287, 116
+   BEGIN
+      AUTOCHECKBOX  "~HAM6-Format",                              IDC_ILBM_HAM6,  31, 83, 165, 10
+      AUTOCHECKBOX  "~Transparente Farbe"               IDC_ILBM_TRANS_CAPTION,  31, 68, 107, 10
+//         ENTRYFIELD "",                                     IDC_ILBM_TRANS_BGR, 141, 69,  22,  8, ES_MARGIN | ES_READONLY NOT WS_TABSTOP
+         SPINBUTTON                                        IDC_ILBM_TRANSINDEX, 169, 68,  40, 10, SPBS_NUMERICONLY | SPBS_MASTER | SPBS_JUSTRIGHT
+         AUTOCHECKBOX  "~automatisch"                       IDC_ILBM_TRANSAUTO, 214, 68,  60, 10
+      LTEXT         "~Position"                                   IDC_ILBM_POS,  31, 53,  87, 10, DT_MNEMONIC
+         SPINBUTTON                                             IDC_ILBM_POS_X, 111, 53,  40, 10, SPBS_NUMERICONLY | SPBS_MASTER | SPBS_JUSTRIGHT
+         CTEXT      "/"                                             IDC_ILBM_I, 154, 53,  12, 10
+         SPINBUTTON                                             IDC_ILBM_POS_Y, 169, 53,  40, 10, SPBS_NUMERICONLY | SPBS_MASTER | SPBS_JUSTRIGHT
+      LTEXT         "~Bildschirmgrî·e"                    IDC_ILBM_SCREEN_SIZE,  31, 38,  77, 10, DT_MNEMONIC
+         SPINBUTTON                                      IDC_ILBM_SCREEN_WIDTH, 111, 38,  40, 10, SPBS_NUMERICONLY | SPBS_MASTER | SPBS_JUSTRIGHT
+         CTEXT      "x"                                             IDC_ILBM_X, 154, 38,  12, 10
+         SPINBUTTON                                     IDC_ILBM_SCREEN_HEIGHT, 169, 38,  40, 10, SPBS_NUMERICONLY | SPBS_MASTER | SPBS_JUSTRIGHT
+         LTEXT      "Pixel"                                     IDC_ILBM_PIXEL, 214, 38,  54, 10
+      LTEXT         "~SeitenverhÑltnis"                        IDC_ILBM_ASPECT,  31, 23,  77, 10, DT_MNEMONIC
+         SPINBUTTON                                          IDC_ILBM_ASPECT_X, 111, 23,  40, 10, SPBS_NUMERICONLY | SPBS_MASTER | SPBS_JUSTRIGHT
+         CTEXT      "zu"                                            IDC_ILBM_P, 154, 23,  12, 10
+         SPINBUTTON                                          IDC_ILBM_ASPECT_Y, 169, 23,  40, 10, SPBS_NUMERICONLY | SPBS_MASTER | SPBS_JUSTRIGHT
+   END
+END
+
+DLGTEMPLATE (IDR_GERMAN_BASE + IDR_JPEG_EXPORT) LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+   FRAME  "", (IDR_GERMAN_BASE + IDR_JPEG_EXPORT), 0, 0, 287, 116
+   BEGIN
+      LTEXT        "~QualitÑt",                       IDC_JPEG_QUALITY_CAPTION,  31, 74, 125, 10, DT_MNEMONIC
+      SLIDER                                                  IDC_JPEG_QUALITY,  31, 51, 225, 20, SLS_RIBBONSTRIP | SLS_BUTTONSRIGHT | SLS_TOP | SLS_PRIMARYSCALE2
+         CTLDATA  12, 0, 0, 0, 101, 0
+      ENTRYFIELD   "75",                                IDC_JPEG_QUALITY_VALUE, 231, 74,  20,  8, ES_MARGIN | ES_READONLY | ES_CENTER NOT WS_TABSTOP
+      AUTOCHECKBOX "~Progressives JPEG",                  IDC_JPEG_PROGRESSIVE,  31, 38, 105, 10
+   END
+END
+
+DLGTEMPLATE (IDR_GERMAN_BASE + IDR_KIPS_IMPORT) LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+   FRAME  "", (IDR_GERMAN_BASE + IDR_KIPS_IMPORT), 0, 0, 287, 116
+   BEGIN
+      GROUPBOX  "Palettendateioptionen",                    IDC_KIPS_EXTENSION,  76, 40, 135, 32
+         AUTORADIOBUTTON ".~PAL-Erweiterung",                     IDC_KIPS_PAL,  81, 53, 125, 10
+         AUTORADIOBUTTON ".~KPL-Erweiterung",                     IDC_KIPS_KPL,  81, 43, 125, 10
+   END
+END
+
+DLGTEMPLATE (IDR_GERMAN_BASE + IDR_KIPS_EXPORT) LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+   FRAME  "", (IDR_GERMAN_BASE + IDR_KIPS_EXPORT), 0, 0, 287, 116
+   BEGIN
+      GROUPBOX  "Palettendateioptionen",                    IDC_KIPS_EXTENSION,  76, 40, 135, 32
+         AUTORADIOBUTTON ".~PAL-Erweiterung",                     IDC_KIPS_PAL,  81, 53, 125, 10
+         AUTORADIOBUTTON ".~KPL-Erweiterung",                     IDC_KIPS_KPL,  81, 43, 125, 10
+   END
+END
+
+DLGTEMPLATE (IDR_GERMAN_BASE + IDR_PCX_IMPORT) LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+   FRAME  "", (IDR_GERMAN_BASE + IDR_PCX_IMPORT), 0, 0, 287, 116
+   BEGIN
+      AUTOCHECKBOX "~Zeilenbreite korrigieren",               IDC_PCX_FIXLINES,  61, 53, 165, 10
+   END
+END
+
+DLGTEMPLATE (IDR_GERMAN_BASE + IDR_PSEG_IMPORT) LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+   FRAME  "", (IDR_GERMAN_BASE + IDR_PSEG_IMPORT), 0, 0, 287, 116
+   BEGIN
+      AUTOCHECKBOX "~DatensatzlÑngen korrigieren",         IDC_PSEG_FIXRECORDS,  61, 53, 165, 10
+   END
+END
+
+DLGTEMPLATE (IDR_GERMAN_BASE + IDR_PSEG_EXPORT) LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+   FRAME  "", (IDR_GERMAN_BASE + IDR_PSEG_EXPORT), 0, 0, 287, 116
+   BEGIN
+      AUTOCHECKBOX "Flag fÅr ~doppelte Grî·e setzen",          IDC_PSEG_DOUBLE,  81, 53, 125, 10
+   END
+END
+
+DLGTEMPLATE (IDR_GERMAN_BASE + IDR_SPRITE_IMPORT) LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+   FRAME  "", (IDR_GERMAN_BASE + IDR_SPRITE_IMPORT), 0, 0, 287, 116
+   BEGIN
+      LTEXT    "Bitmap~index",                        IDC_SPRITE_INDEX_CAPTION,  81, 53,  63, 10, DT_MNEMONIC
+         SPINBUTTON                                           IDC_SPRITE_INDEX, 146, 53,  50, 10, SPBS_NUMERICONLY | SPBS_MASTER | SPBS_JUSTRIGHT
+   END
+END
+
+DLGTEMPLATE (IDR_GERMAN_BASE + IDR_TARGA_EXPORT) LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+   FRAME  "", (IDR_GERMAN_BASE + IDR_TARGA_EXPORT), 0, 0, 287, 116
+   BEGIN
+      GROUPBOX "Zeilenausrichtung",                        IDC_TARGA_DIRECTION,  76, 40, 135, 32
+         AUTORADIOBUTTON "von ~oben nach unten",               IDC_TARGA_YDOWN,  81, 53, 125, 10
+         AUTORADIOBUTTON "von ~unten nach oben",                 IDC_TARGA_YUP,  81, 43, 125, 10
+   END
+END
+
+DLGTEMPLATE (IDR_GERMAN_BASE + IDR_TIFF_IMPORT) LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+   FRAME  "", (IDR_GERMAN_BASE + IDR_TIFF_IMPORT), 0, 0, 287, 116
+   BEGIN
+      LTEXT    "Bitmap~index",                          IDC_TIFF_INDEX_CAPTION,  81, 53,  63, 10, DT_MNEMONIC
+         SPINBUTTON                                             IDC_TIFF_INDEX, 146, 53,  50, 10, SPBS_NUMERICONLY | SPBS_MASTER | SPBS_JUSTRIGHT
+   END
+END
+
+DLGTEMPLATE (IDR_GERMAN_BASE + IDR_TIFF_EXPORT) LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+   FRAME  "", (IDR_GERMAN_BASE + IDR_TIFF_EXPORT), 0, 0, 287, 116
+   BEGIN
+      AUTOCHECKBOX "LZW-~Kompression",                            IDC_TIFF_LZW,  16, 94, 120, 10
+      AUTOCHECKBOX "schreibe ~Palette",                       IDC_TIFF_MONOPAL, 151, 94, 120, 10
+      GROUPBOX     "Tagoptionen",                                IDC_TIFF_TAGS,  11,  5, 265, 87
+         LTEXT        "~Tagname",                         IDC_TIFF_TAG_CAPTION,  16, 73,  53, 10, DT_MNEMONIC
+         COMBOBOX     "",                                         IDC_TIFF_TAG,  71, 23,  95, 60, CBS_DROPDOWN
+//         AUTOCHECKBOX "~schreibe Tag",                      IDC_TIFF_WRITE_TAG, 176, 73,  75, 10
+         MLE          "",                                    IDC_TIFF_TAG_TEXT,  16, 23, 255, 45, MLS_WORDWRAP | MLS_BORDER | MLS_VSCROLL
+         AUTOCHECKBOX "~ersetze Leerzeichen",                 IDC_TIFF_REPLACE,  16,  8, 120, 10
+         LTEXT        "Ersatz~zeichen",               IDC_TIFF_REPLACE_CAPTION, 151,  8,  92, 10, DT_MNEMONIC
+         ENTRYFIELD   "_",                                IDC_TIFF_REPLACEMENT, 246,  9,  15,  8, ES_MARGIN | ES_CENTER
+            CTLDATA  12, 1, 0, 0, 0, 0
+   END
+END
+
+DLGTEMPLATE (IDR_GERMAN_BASE + IDR_YUV12C_EXPORT) LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+   FRAME  "", (IDR_GERMAN_BASE + IDR_YUV12C_EXPORT), 0, 0, 287, 116
+   BEGIN
+      LTEXT         "Pi~xelgrî·e"                          IDC_YUV12C_POSITION,  61, 53,  63, 10, DT_MNEMONIC
+      SPINBUTTON                                         IDC_YUV12C_POSITION_X,  81, 43,  40, 10, SPBS_NUMERICONLY | SPBS_MASTER | SPBS_JUSTRIGHT
+      CTEXT         "x"                                           IDC_YUV12C_I, 124, 43,  12, 10
+      SPINBUTTON                                         IDC_YUV12C_POSITION_Y, 139, 43,  40, 10, SPBS_NUMERICONLY | SPBS_MASTER | SPBS_JUSTRIGHT
+   END
+END
+
+STRINGTABLE
+BEGIN
+   (IDR_GERMAN_BASE + IDR_COLOR_CONV_PAGE) "~Farbformat"
+      (IDR_GERMAN_BASE + IDR_PALETTE_GREYSCALE)  "Graustufen"
+      (IDR_GERMAN_BASE + IDR_PALETTE_1_BPP)      "Monochrom"
+      (IDR_GERMAN_BASE + IDR_PALETTE_4_BPP_8)    "8 Farben"
+      (IDR_GERMAN_BASE + IDR_PALETTE_4_BPP_16)   "16 Farben"
+      (IDR_GERMAN_BASE + IDR_PALETTE_8_BPP_666)  "RGB: 6x6x6"
+      (IDR_GERMAN_BASE + IDR_PALETTE_8_BPP_784)  "RGB: 7x8x4"
+      (IDR_GERMAN_BASE + IDR_PALETTE_16_BPP_555) "RGB: 32x32x32"
+      (IDR_GERMAN_BASE + IDR_PALETTE_16_BPP_565) "RGB: 32x64x32"
+      (IDR_GERMAN_BASE + IDR_PALETTE_TRUECOLOR)  "Echte Farben"
+      (IDR_GERMAN_BASE + IDR_PALETTE_REDSCALE)   "Rotanteil"
+      (IDR_GERMAN_BASE + IDR_PALETTE_GREENSCALE) "GrÅnanteil"
+      (IDR_GERMAN_BASE + IDR_PALETTE_BLUESCALE)  "Blauanteil"
+   (IDR_GERMAN_BASE + IDR_BITMAP_IMPORT)  "Bitmap ~importieren"
+   (IDR_GERMAN_BASE + IDR_BITMAP_EXPORT)  "Bitmap ~exportieren"
+   (IDR_GERMAN_BASE + IDR_GEM_EXPORT)     "Atari Rasterformat ~exportieren"
+   (IDR_GERMAN_BASE + IDR_GIF_IMPORT)     "Compuserve Austauschformat ~importieren"
+   (IDR_GERMAN_BASE + IDR_GIF_EXPORT)     "Compuserve Austauschformat ~exportieren"
+   (IDR_GERMAN_BASE + IDR_GREYMAP_IMPORT) "Portables Graustufenformat ~importieren"
+   (IDR_GERMAN_BASE + IDR_GREYMAP_EXPORT) "Portables Graustufenformat ~exportieren"
+   (IDR_GERMAN_BASE + IDR_IAX_IMPORT)     "IBM IAX-Datei ~importieren"
+   (IDR_GERMAN_BASE + IDR_IAX_EXPORT)     "IBM IAX-Datei ~exportieren"
+   (IDR_GERMAN_BASE + IDR_ILBM_EXPORT)    "AMIGA IFF/ILBM-Datei ~exportieren"
+   (IDR_GERMAN_BASE + IDR_JPEG_EXPORT)    "JPEG-Datei ~exportieren"
+   (IDR_GERMAN_BASE + IDR_KIPS_IMPORT)    "IBM KIPS-Datei ~importieren"
+   (IDR_GERMAN_BASE + IDR_KIPS_EXPORT)    "IBM KIPS-Datei ~exportieren"
+   (IDR_GERMAN_BASE + IDR_PCX_IMPORT)     "Paintbrush-Datei ~importieren"
+   (IDR_GERMAN_BASE + IDR_PSEG_IMPORT)    "IBM PSEG-Datei ~importieren"
+   (IDR_GERMAN_BASE + IDR_PSEG_EXPORT)    "IBM PSEG-Datei ~exportieren"
+   (IDR_GERMAN_BASE + IDR_SPRITE_IMPORT)  "RiscOS Sprite-Datei ~importieren"
+   (IDR_GERMAN_BASE + IDR_TARGA_EXPORT)   "Targa/Vista-Datei ~exportieren"
+   (IDR_GERMAN_BASE + IDR_TIFF_IMPORT)    "Microsoft/Aldus TIFF-Format ~importieren"
+   (IDR_GERMAN_BASE + IDR_TIFF_EXPORT)    "Microsoft/Aldus TIFF-Format ~exportieren"
+      (IDR_GERMAN_BASE + IDR_ARTIST)      "KÅnstlername"
+      (IDR_GERMAN_BASE + IDR_SOFTWARE)    "Software"
+/*      (IDR_GERMAN_BASE + IDR_MAKE)        "Erstellungsdatum" */
+      (IDR_GERMAN_BASE + IDR_MODEL)       "Modell"
+      (IDR_GERMAN_BASE + IDR_HOST)        "Hostcomputer"
+      (IDR_GERMAN_BASE + IDR_DOCNAME)     "Dokumentname"
+      (IDR_GERMAN_BASE + IDR_PAGENAME)    "Seitenbeschreibung"
+      (IDR_GERMAN_BASE + IDR_DESCRIPTION) "Bildbeschreibung"
+   (IDR_GERMAN_BASE + IDR_YUV12C_EXPORT)  "YUV12C M-Motion-Frame ~exportieren"
+
+   (IDR_GERMAN_BASE + IDR_XGFD_ALLFILES)       "<Alle Dateien>"
+   (IDR_GERMAN_BASE + IDR_XGFD_ALLSUPPORTED)   "<Bekannte Bilddateien>"
+   (IDR_GERMAN_BASE + IDR_XGFD_OPEN)           "ôffnen"
+   (IDR_GERMAN_BASE + IDR_XGFD_OPEN_TITLE)     "Bilddatei îffnen"
+   (IDR_GERMAN_BASE + IDR_XGFD_SAVE)           "Sichern"
+   (IDR_GERMAN_BASE + IDR_XGFD_SAVE_TITLE)     "Bilddatei sichern"
+   (IDR_GERMAN_BASE + IDR_XGFD_CANCEL)         "Abbruch"
+   (IDR_GERMAN_BASE + IDR_XGFD_OPTIONS)        "Optionen"
+   (IDR_GERMAN_BASE + IDR_XGFD_HELP)           "Hilfe"
+END
+
+
+

@@ -1,0 +1,7 @@
+NAME            Sound   WINDOWAPI
+
+DESCRIPTION    'Sound - sample of the OOL'
+PROTMODE
+HEAPSIZE   36000
+STACKSIZE  36000
+

@@ -1,0 +1,15 @@
+#include "resource.h"
+
+MENU IDM_MENU
+BEGIN
+SUBMENU "File",         IDM_FILE
+BEGIN 
+    MENUITEM "Open",    IDM_FILE_OPEN
+    MENUITEM "Close",   IDM_FILE_CLOSE
+END
+SUBMENU "Select",       IDM_SELECT
+BEGIN
+    MENUITEM "All",     IDM_SELECT_ALL
+    MENUITEM "None",    IDM_SELECT_NONE
+END
+END

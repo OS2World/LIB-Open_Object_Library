@@ -1,0 +1,24 @@
+#include <os2.h>
+#include "resource.h"
+
+DLGTEMPLATE IDM_MODELESSDIALOG LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+    DIALOG  "Modeless Dialog", IDM_MODELESSDIALOG, 106, 40, 148, 84, 
+            WS_VISIBLE, FCF_SYSMENU | FCF_TITLEBAR
+    BEGIN
+        PUSHBUTTON      "Push", PUSH_OK, 14, 13, 40, 14
+        LTEXT           "Press <OK> to leave the dialog!", 102, 15, 33, 94, 
+                        38, DT_WORDBREAK
+    END
+END
+
+DLGTEMPLATE IDM_MODALDIALOG LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+    DIALOG  "Modal Dialog", IDM_MODALDIALOG, 118, 44, 148, 84, WS_VISIBLE, 
+            FCF_SYSMENU | FCF_TITLEBAR
+    BEGIN
+        PUSHBUTTON      "Push", PUSH_OK, 17, 10, 40, 14
+        LTEXT           "Press <OK> to leave to modal dialog!", 201, 19, 30, 
+                        67, 42, DT_WORDBREAK
+    END
+END

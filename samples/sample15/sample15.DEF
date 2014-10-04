@@ -1,0 +1,7 @@
+NAME            NewApp   WINDOWAPI
+
+
+DESCRIPTION    'StdPrgm Programs'
+PROTMODE
+HEAPSIZE        36000
+STACKSIZE       36000

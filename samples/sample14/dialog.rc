@@ -1,0 +1,15 @@
+#include "resource.h"
+
+MENU IDM_MENU
+BEGIN
+	SUBMENU "Dialog", IDM_DIALOG
+	BEGIN
+		MENUITEM "Modeless", IDM_MODELESS
+		MENUITEM "Modal", IDM_MODAL
+		MENUITEM SEPARATOR
+		MENUITEM "Quit", IDM_QUIT
+	END
+END
+
+
+RCINCLUDE "sample14.dlg" 

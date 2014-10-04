@@ -1,0 +1,10 @@
+#define IDM_MAIN        100
+#define IDM_FILE        110
+#define IDM_FILE_OPEN   111
+#define IDM_FILE_EXIT   112
+#define IDM_FILE_SAVE   113
+#define IDM_EDIT        120
+#define IDM_EDIT_COPY   121
+#define IDM_EDIT_PASTE  122
+#define IDM_OPTION            130
+#define IDM_OPTION_STRETCH    131

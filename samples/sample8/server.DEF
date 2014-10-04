@@ -1,0 +1,7 @@
+NAME            server   WINDOWAPI
+
+DESCRIPTION    'StdPrgm Programs'
+PROTMODE
+HEAPSIZE        24000
+STACKSIZE       24000
+
