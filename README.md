@@ -6,7 +6,7 @@ A C++ class library for Warp 3 or higher. It contains classes for - control-wind
 LICENSE
 ===============
 * BSD 3 Clauses
-* Some components are GNU GPL
+* Some components are GNU LGPL
 
 COMPILE TOOLS
 ===============
